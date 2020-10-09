@@ -1,0 +1,17 @@
+# Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper)
+---
+modname: 'configconfig'
+copyright_years: '2020'
+author: 'Dominic Davis-Foster'
+email: 'dominic@davis-foster.co.uk'
+username: 'domdfcoding'
+version: '0.0.0'
+license: 'MIT'
+short_desc: 'Load and validate YAML configuration files.'
+
+enable_conda: False
+
+python_versions:
+  - 3.7
+  - 3.8
+  - 3.9-dev

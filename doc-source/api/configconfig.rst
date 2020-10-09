@@ -1,0 +1,5 @@
+=============
+configconfig
+=============
+
+.. automodule:: configconfig
