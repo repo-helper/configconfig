@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Autoconfig — Python  documentation
+  </title>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js">
+  </script>
+  <script src="_static/jquery.js">
+  </script>
+  <script src="_static/underscore.js">
+  </script>
+  <script src="_static/doctools.js">
+  </script>
+  <script src="_static/language_data.js">
+  </script>
+  <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
+ </head>
+ <body>
+  <div class="document">
+   <div class="documentwrapper">
+    <div class="bodywrapper">
+     <div class="body" role="main">
+      <div class="section" id="autoconfig">
+       <h1>
+        Autoconfig
+        <a class="headerlink" href="#autoconfig" title="Permalink to this headline">
+         ¶
+        </a>
+       </h1>
+       <dl class="std conf">
+        <dt id="conf-enable_tests">
+         <strong>
+          enable_tests
+         </strong>
+         <a class="headerlink" href="#conf-enable_tests" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          Whether tests should be performed with pytest.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">enable_tests</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          :
+          <code class="xref py py-obj docutils literal notranslate">
+           <span class="pre">
+            True
+           </span>
+          </code>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : Boolean
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-0">
+         <strong>
+          enable_tests
+         </strong>
+         <a class="headerlink" href="#conf-0" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          Whether tests should be performed with pytest.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">enable_tests</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          :
+          <code class="xref py py-obj docutils literal notranslate">
+           <span class="pre">
+            True
+           </span>
+          </code>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : Boolean
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-author">
+         <strong>
+          author
+         </strong>
+         <a class="headerlink" href="#conf-author" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The name of the package author.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">author</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dominic Davis-Foster</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : yes
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-email">
+         <strong>
+          email
+         </strong>
+         <a class="headerlink" href="#conf-email" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The email address of the author or maintainer.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">email</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dominic@example.com</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : yes
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-username">
+         <strong>
+          username
+         </strong>
+         <a class="headerlink" href="#conf-username" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The username of the GitHub account hosting the repository.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">domdfcoding</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : yes
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-modname">
+         <strong>
+          modname
+         </strong>
+         <a class="headerlink" href="#conf-modname" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The name of the package.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">modname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">repo_helper</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : yes
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-copyright_years">
+         <strong>
+          copyright_years
+         </strong>
+         <a class="headerlink" href="#conf-copyright_years" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The copyright_years of the package.
+         </p>
+         <p>
+          Examples:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2020</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          or
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2014-2019</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : yes
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String or Integer
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-repo_name">
+         <strong>
+          repo_name
+         </strong>
+         <a class="headerlink" href="#conf-repo_name" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The name of GitHub repository, if different to
+          <a class="reference internal" href="#conf-modname">
+           <code class="xref std std-conf docutils literal notranslate">
+            <span class="pre">
+             modname
+            </span>
+           </code>
+          </a>
+          .
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">repo_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">repo_helper</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          : The value of
+          <a class="reference internal" href="#conf-modname">
+           <code class="xref std std-conf docutils literal notranslate">
+            <span class="pre">
+             modname
+            </span>
+           </code>
+          </a>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-pypi_name">
+         <strong>
+          pypi_name
+         </strong>
+         <a class="headerlink" href="#conf-pypi_name" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The name of project on PyPI, if different to
+          <a class="reference internal" href="#conf-modname">
+           <code class="xref std std-conf docutils literal notranslate">
+            <span class="pre">
+             modname
+            </span>
+           </code>
+          </a>
+          .
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">pypi_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">git-helper</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          : The value of
+          <a class="reference internal" href="#conf-modname">
+           <code class="xref std std-conf docutils literal notranslate">
+            <span class="pre">
+             modname
+            </span>
+           </code>
+          </a>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-import_name">
+         <strong>
+          import_name
+         </strong>
+         <a class="headerlink" href="#conf-import_name" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The name the package is imported with, if different to
+          <a class="reference internal" href="#conf-modname">
+           <code class="xref std std-conf docutils literal notranslate">
+            <span class="pre">
+             modname
+            </span>
+           </code>
+          </a>
+          .
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">import_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">repo_helper</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          : The value of
+          <a class="reference internal" href="#conf-modname">
+           <code class="xref std std-conf docutils literal notranslate">
+            <span class="pre">
+             modname
+            </span>
+           </code>
+          </a>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-keywords">
+         <strong>
+          keywords
+         </strong>
+         <a class="headerlink" href="#conf-keywords" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          A list of keywords for the project.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">keywords</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">version control</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">git</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          : [ ]
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : Sequence of String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-short_desc">
+         <strong>
+          short_desc
+         </strong>
+         <a class="headerlink" href="#conf-short_desc" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          A short description of the project. Used by PyPI.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">short_desc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">This is a short description of my project.</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : yes
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-source_dir">
+         <strong>
+          source_dir
+         </strong>
+         <a class="headerlink" href="#conf-source_dir" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          The directory containing the source code of the project.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">source_dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">src</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          By default this is the repository root
+         </p>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          : &lt;blank&gt;
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : String
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-pure_python">
+         <strong>
+          pure_python
+         </strong>
+         <a class="headerlink" href="#conf-pure_python" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          Flag to indicate the package is pure Python
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">pure_python</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          :
+          <code class="xref py py-obj docutils literal notranslate">
+           <span class="pre">
+            True
+           </span>
+          </code>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : Boolean
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-on_pypi">
+         <strong>
+          on_pypi
+         </strong>
+         <a class="headerlink" href="#conf-on_pypi" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          Flag to indicate the package is available on PyPI
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">on_pypi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          :
+          <code class="xref py py-obj docutils literal notranslate">
+           <span class="pre">
+            True
+           </span>
+          </code>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : Boolean
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+       <p>
+       </p>
+       <dl class="std conf">
+        <dt id="conf-stubs_package">
+         <strong>
+          stubs_package
+         </strong>
+         <a class="headerlink" href="#conf-stubs_package" title="Permalink to this definition">
+          ¶
+         </a>
+        </dt>
+        <dd>
+         <p>
+          Flag to indicate the package is a PEP 561 stubs package.
+         </p>
+         <p>
+          Example:
+         </p>
+         <div class="highlight-yaml notranslate">
+          <div class="highlight">
+           <pre><span></span><span class="nt">stubs_package</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre>
+          </div>
+         </div>
+         <p>
+          <strong>
+           Required
+          </strong>
+          : no
+         </p>
+         <p>
+          <strong>
+           Default
+          </strong>
+          :
+          <code class="xref py py-obj docutils literal notranslate">
+           <span class="pre">
+            False
+           </span>
+          </code>
+         </p>
+         <p>
+          <strong>
+           Type
+          </strong>
+          : Boolean
+         </p>
+        </dd>
+       </dl>
+       <p>
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div aria-label="main navigation" class="sphinxsidebar" role="navigation">
+    <div class="sphinxsidebarwrapper">
+     <h1 class="logo">
+      <a href="index.html">
+       Python
+      </a>
+     </h1>
+     <h3>
+      Navigation
+     </h3>
+     <div class="relations">
+      <h3>
+       Related Topics
+      </h3>
+      <ul>
+       <li>
+        <a href="index.html">
+         Documentation overview
+        </a>
+        <ul>
+        </ul>
+       </li>
+      </ul>
+     </div>
+     <div id="searchbox" role="search" style="display: none">
+      <h3 id="searchlabel">
+       Quick search
+      </h3>
+      <div class="searchformwrapper">
+       <form action="search.html" class="search" method="get">
+        <input aria-labelledby="searchlabel" name="q" type="text"/>
+        <input type="submit" value="Go"/>
+       </form>
+      </div>
+     </div>
+     <script>
+      $('#searchbox').show(0);
+     </script>
+    </div>
+   </div>
+   <div class="clearer">
+   </div>
+  </div>
+ </body>
+</html>

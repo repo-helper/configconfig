@@ -1,0 +1,10 @@
+$schema: http://json-schema.org/schema#
+properties:
+  sphinx_html_theme:
+    enum:
+    - sphinx_rtd_theme
+    - alabaster
+    - repo_helper_sphinx_theme
+    - domdf_sphinx_theme
+required: []
+type: object

@@ -1,0 +1,162 @@
+$schema: http://json-schema.org/schema#
+additionalProperties: false
+properties:
+  additional_setup_args:
+    type: object
+  author:
+    type: string
+  console_scripts:
+    items:
+      type: string
+    type: array
+  copyright_years:
+    type:
+    - string
+    - number
+  docker_name:
+    type: string
+  docker_shields:
+    type:
+    - boolean
+    - string
+  docs_dir:
+    type: string
+  email:
+    type: string
+  enable_docs:
+    type:
+    - boolean
+    - string
+  enable_pre_commit:
+    type:
+    - boolean
+    - string
+  enable_releases:
+    type:
+    - boolean
+    - string
+  enable_tests:
+    type:
+    - boolean
+    - string
+  extra_sphinx_extensions:
+    items:
+      type: string
+    type: array
+  html_context:
+    type: object
+  html_theme_options:
+    type: object
+  imgbot_ignore:
+    items:
+      type: string
+    type: array
+  import_name:
+    type: string
+  intersphinx_mapping:
+    items:
+      type: string
+    type: array
+  keywords:
+    items:
+      type: string
+    type: array
+  manifest_additional:
+    items:
+      type: string
+    type: array
+  modname:
+    type: string
+  mypy_deps:
+    items:
+      type: string
+    type: array
+  mypy_plugins:
+    items:
+      type: string
+    type: array
+  on_pypi:
+    type:
+    - boolean
+    - string
+  platforms:
+    items:
+      enum:
+      - Windows
+      - macOS
+      - Linux
+    type: array
+  preserve_custom_theme:
+    type:
+    - boolean
+    - string
+  pure_python:
+    type:
+    - boolean
+    - string
+  py_modules:
+    items:
+      type: string
+    type: array
+  pypi_name:
+    type: string
+  python_deploy_version:
+    type:
+    - string
+    - number
+  python_versions:
+    items:
+      type:
+      - string
+      - number
+    type: array
+  repo_name:
+    type: string
+  rtfd_author:
+    type: string
+  setup_pre:
+    items:
+      type: string
+    type: array
+  short_desc:
+    type: string
+  source_dir:
+    type: string
+  sphinx_conf_epilogue:
+    items:
+      type: string
+    type: array
+  sphinx_conf_preamble:
+    items:
+      type: string
+    type: array
+  sphinx_html_theme:
+    enum:
+    - sphinx_rtd_theme
+    - alabaster
+    - repo_helper_sphinx_theme
+    - domdf_sphinx_theme
+  stubs_package:
+    type:
+    - boolean
+    - string
+  tox_build_requirements:
+    items:
+      type: string
+    type: array
+  tox_requirements:
+    items:
+      type: string
+    type: array
+  tox_testenv_extras:
+    type: string
+  username:
+    type: string
+required:
+- author
+- email
+- username
+- modname
+- copyright_years
+- short_desc
+type: object

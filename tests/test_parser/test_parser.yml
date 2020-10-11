@@ -1,0 +1,66 @@
+additional_requirements_files: []
+additional_setup_args: {}
+author: Dominic Davis-Foster
+console_scripts: []
+copyright_years: '2020'
+docker_name: ''
+docker_shields: false
+docs_dir: doc-source
+email: dominic@davis-foster.co.uk
+enable_docs: true
+enable_pre_commit: true
+enable_releases: true
+enable_tests: true
+extra_sphinx_extensions: []
+extras_require:
+  all: []
+gh_actions_versions:
+  '3.7': py37, build
+  '3.8': py38, build
+  3.9-dev: py39-dev, build
+html_context: {}
+html_theme_options: {}
+imgbot_ignore: []
+import_name: configconfig
+intersphinx_mapping: []
+keywords: []
+manifest_additional: []
+min_py_version: '3.7'
+modname: configconfig
+mypy_deps: []
+mypy_plugins: []
+on_pypi: true
+platforms:
+- Windows
+- macOS
+- Linux
+preserve_custom_theme: false
+pure_python: true
+py_modules: []
+pypi_name: configconfig
+python_deploy_version: '3.7'
+python_versions:
+- '3.7'
+- '3.8'
+- 3.9-dev
+repo_name: configconfig
+rtfd_author: Dominic Davis-Foster
+setup_pre: []
+short_desc: Load and validate YAML configuration files.
+source_dir: ''
+sphinx_conf_epilogue: []
+sphinx_conf_preamble: []
+sphinx_html_theme: domdf_sphinx_theme
+stubs_package: false
+tox_build_requirements: []
+tox_py_versions:
+- py37
+- py38
+- py39-dev
+tox_requirements: []
+tox_testenv_extras: all
+tox_travis_versions:
+  '3.7': py37, build, mypy
+  '3.8': py38, build
+  3.9-dev: py39-dev, build
+username: domdfcoding

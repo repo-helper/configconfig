@@ -1,0 +1,8 @@
+$schema: http://json-schema.org/schema#
+properties:
+  preserve_custom_theme:
+    type:
+    - boolean
+    - string
+required: []
+type: object
