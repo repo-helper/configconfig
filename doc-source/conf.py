@@ -13,9 +13,6 @@ sys.path.append(os.path.abspath('..'))
 # this package
 from __pkginfo__ import __version__
 
-# User-configurable lines
-# End of user-configurable lines
-
 github_username = "domdfcoding"
 github_repository = "configconfig"
 github_url = f"https://github.com/{github_username}/{github_repository}"

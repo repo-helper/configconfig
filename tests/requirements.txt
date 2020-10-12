@@ -1,6 +1,6 @@
 bs4>=0.0.1
 coverage>=5.1
-coverage_pyver_pragma>=0.0.5
+coverage_pyver_pragma>=0.0.6
 pytest>=6.0.0
 pytest-cov>=2.8.1
 pytest-randomly>=3.3.1
