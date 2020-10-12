@@ -2,11 +2,40 @@
 #
 #  autoconfig.py
 """
-A Sphinx directive for documenting configuration variables in Python.
+A Sphinx directive for documenting YAML configuration values.
 
-Provides the :rst:dir:`autoconfig` directive to document configuration variables automatically,
-the :rst:dir:`conf` directive to document configuration manually,
+Provides the :rst:dir:`autoconfig` directive to document configuration
+values automatically, the :rst:dir:`conf` directive to document them manually,
 and the :rst:role:`conf` role to link to a :rst:dir:`conf` directive.
+
+Usage
+---------
+
+.. rst:directive:: autoconfig
+
+	Directive to automatically document an YAML configuration value.
+
+	Takes a single argument, either the fully qualified name of the :class:`~.ConfigVar` object,
+	or the name of the module if the ``:category:`` option is given.
+
+	.. rst:directive:option:: category
+		:type: string
+
+		(optional) The category of options to document.
+
+
+.. rst:directive:: conf
+
+	Directive to document an YAML configuration value.
+
+
+.. rst:role:: conf
+
+	Role to add a cross-reference to a :rst:dir:`conf` or :rst:dir:`autoconfig` directive.
+
+
+API Reference
+---------------
 """
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -60,7 +89,7 @@ conf_node_purger = Purger("all_conf_nodes")
 
 class AutoConfigDirective(SphinxDirective):
 	"""
-
+	Sphinx directive to automatically document an YAML configuration value.
 	"""
 
 	has_content: bool = True
@@ -71,7 +100,7 @@ class AutoConfigDirective(SphinxDirective):
 
 	def run(self) -> List[nodes.Node]:
 		"""
-
+		Process the content of the directive.
 		"""
 
 		config_var: str = self.arguments[0]
@@ -118,6 +147,7 @@ class AutoConfigDirective(SphinxDirective):
 
 	def document_config_var(self, var_obj: Type[ConfigVar]) -> nodes.paragraph:
 		"""
+		Document the given configuration value.
 
 		:param var_obj:
 		"""
@@ -139,9 +169,10 @@ class AutoConfigDirective(SphinxDirective):
 
 def parse_conf_node(env: BuildEnvironment, text: str, node: nodes.Node) -> str:
 	"""
+	Parse the content of a :rst:role:`conf` role.
 
-	:param env:
-	:param text:
+	:param env: The Sphinx build environment.
+	:param text: The content of the directive.
 	:param node:
 	"""
 

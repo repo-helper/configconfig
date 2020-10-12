@@ -36,9 +36,11 @@ from typing_inspect import get_origin, is_literal_type  # type: ignore
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
-from configconfig.utils import check_union, get_yaml_type, optional_getter, tab
+from configconfig.utils import get_yaml_type, tab
 
 __all__ = ["ConfigVar"]
+
+from configconfig.validator import Validator
 
 
 class ConfigVar(metaclass=ConfigVarMeta):
@@ -47,6 +49,9 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 	The class docstring should be the description of the config var, with an example,
 	and the name of the class should be the variable name.
+
+	If you would prefer a more Pythonic naming approach the variable name can
+	be configured with the ``name`` class variable.
 	"""
 
 	dtype: Type
