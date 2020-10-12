@@ -69,7 +69,7 @@ class ConfigVarMeta(type):
 		x.default = dct.get("default", '')
 		x.validator = dct.get("validator", lambda y: y)  # type: ignore
 		x.category = dct.get("category", "other")
-		# x.__name__ = dct.get("name", dct.get("__name__", cls.__name__))
+		x.__name__ = dct.get("name", dct.get("__name__", x.__name__))  # type: ignore
 
 		return x
 

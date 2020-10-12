@@ -38,7 +38,6 @@ from typing_inspect import is_literal_type  # type: ignore
 
 if TYPE_CHECKING:
 	# this package
-	from configconfig.configvar import ConfigVar
 	from configconfig.metaclass import ConfigVarMeta
 
 if sys.version_info >= (3, 8):  # pragma: no cover (<py38)
@@ -80,7 +79,7 @@ UnionType = type(Union)
 GenericAliasType = type(List)
 
 
-def optional_getter(raw_config_vars: Dict[str, Any], cls: Type["ConfigVar"], required: bool) -> Any:
+def optional_getter(raw_config_vars: Dict[str, Any], cls: "ConfigVarMeta", required: bool) -> Any:
 	"""
 
 	:param raw_config_vars:
@@ -181,7 +180,7 @@ def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 
 def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]):  # type: ignore
 	r"""
-	Check if the type of ``obj`` is one of the types in a :class:`typing.Union` or a :class:`typing.List`.
+	Check if the type of ``obj`` is one of the types in a :class:`typing.Union`, :class:`typing.List` etc.
 
 	:param obj:
 	:param dtype:
@@ -191,16 +190,7 @@ def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]):  # type: i
 	return isinstance(obj, dtype.__args__)  # type: ignore
 
 
-json_type_lookup = {
-		str: "string",
-		int: "number",
-		float: "number",
-		dict: "object",
-		list: "array",
-		}
-
-
-def get_json_type(type_: Type) -> Union[Dict[str, str], Dict[str, List[str]]]:
+def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 	"""
 	Get the type for the JSON schema that corresponds to the given Python type.
 
@@ -219,7 +209,7 @@ def get_json_type(type_: Type) -> Union[Dict[str, str], Dict[str, List[str]]]:
 
 			items = get_json_type(args[0])
 
-			if items is None:
+			if items is NotImplemented:
 				return {"type": "array"}
 			elif "type" in items:
 				return {"type": "array", "items": items}
@@ -241,3 +231,15 @@ def get_json_type(type_: Type) -> Union[Dict[str, str], Dict[str, List[str]]]:
 
 	elif type_ is bool:
 		return {"type": ["boolean", "string"]}
+
+	else:
+		return NotImplemented
+
+
+json_type_lookup = {
+		str: "string",
+		int: "number",
+		float: "number",
+		dict: "object",
+		list: "array",
+		}
