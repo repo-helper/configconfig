@@ -55,6 +55,7 @@ class Parser:
 
 	def run(self, filename: PathLike):
 		"""
+		Parse configuration from the given file.
 
 		:param filename: The filename of the YAML configuration file.
 		"""

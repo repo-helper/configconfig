@@ -52,6 +52,32 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 	If you would prefer a more Pythonic naming approach the variable name can
 	be configured with the ``name`` class variable.
+
+	**Example:**
+
+	.. code-block:: python
+
+		class platforms(ConfigVar):
+			\"\"\"
+			A case-insensitive list of platforms to perform tests for.
+
+			Example:
+
+			.. code-block:: yaml
+
+				platforms:
+				  - Windows
+				  - macOS
+				  - Linux
+
+			These values determine the GitHub test workflows to enable,
+			and the Trove classifiers used on PyPI.
+			\"\"\"
+
+			dtype = List[Literal["Windows", "macOS", "Linux"]]
+			default: List[str] = ["Windows", "macOS", "Linux"]
+			category: str = "packaging"
+
 	"""
 
 	dtype: Type
@@ -76,18 +102,22 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	Flag to indicate whether the configuration value is required. Defaults to ``''`` if unset.
 	"""
 
-	validator: Callable
-	"""
-	Function to call to validate the values.
-	The callable must have a single required argument (the value).
-	Should raise :exc:`ValueError` if values are invalid, and return the values if they are valid.
-	May change the values (e.g. make lowercase) before returning.
-	"""
-
 	category: str
 	"""
 	The category the :class:`~configconfig.configvar.ConfigVar` is listed under in the documentation.
 	"""
+
+	@classmethod
+	def validator(cls, value: Any) -> Any:
+		"""
+		Function to call to validate the values.
+
+		* The callable must have a single required argument (the value).
+		* Should raise :exc:`ValueError` if values are invalid, and return the values if they are valid.
+		* May change the values (e.g. make lowercase) before returning.
+		"""
+
+		return value
 
 	def __new__(cls, raw_config_vars: Dict[str, Any]) -> Any:
 		# Exists purely so mypy knows about the signature
@@ -100,9 +130,9 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 		:param raw_config_vars: Dictionary to obtain the value from.
 
-		:return:
 		:rtype: See the ``rtype`` attribute.
 		"""
+
 		return cls.validator(cls.validate(raw_config_vars))
 
 	@classmethod
