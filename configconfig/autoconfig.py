@@ -64,6 +64,7 @@ API Reference
 #
 
 # stdlib
+import warnings
 from typing import Any, Dict, List, Type
 
 # 3rd party
@@ -104,9 +105,9 @@ class AutoConfigDirective(SphinxDirective):
 		"""
 
 		config_var: str = self.arguments[0]
-		node_list = []
 
 		if "category" in self.options:
+			node_list = []
 			module = import_module(config_var)
 
 			if hasattr(module, "__all__"):
@@ -132,18 +133,20 @@ class AutoConfigDirective(SphinxDirective):
 				var_obj: Type[ConfigVar] = getattr(module, class_)
 
 				if not (isinstance(var_obj, ConfigVarMeta) and issubclass(var_obj, ConfigVar)):
-					continue
+					continue  # pragma: no cover
 				elif var_obj.category == category:
 					node_list.append(self.document_config_var(var_obj))
+
+			return node_list
+
 		else:
 			module_name, class_ = config_var.rsplit(".", 1)
 			var_obj = import_object(module_name, [class_])[3]
 			if not issubclass(var_obj, ConfigVar):
-				raise TypeError("'autoconfig' can only be used with 'ConfigVar' subclasses.")
+				warnings.warn("'autoconfig' can only be used with 'ConfigVar' subclasses.")
+				return []
 
-			node_list.append(self.document_config_var(var_obj))
-
-		return node_list
+			return [self.document_config_var(var_obj)]
 
 	def document_config_var(self, var_obj: Type[ConfigVar]) -> nodes.paragraph:
 		"""
@@ -169,11 +172,11 @@ class AutoConfigDirective(SphinxDirective):
 
 def parse_conf_node(env: BuildEnvironment, text: str, node: nodes.Node) -> str:
 	"""
-	Parse the content of a :rst:role:`conf` role.
+	Parse the content of a :rst:dir:`conf` directive.
 
 	:param env: The Sphinx build environment.
 	:param text: The content of the directive.
-	:param node:
+	:param node: The docutils node class.
 	"""
 
 	args = text.split("^")
