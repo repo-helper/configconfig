@@ -175,7 +175,6 @@ class ConfigVar(metaclass=ConfigVarMeta):
 				buf += "\t**Default**: { }\n\n"
 			elif isinstance(cls.default, Callable):  # type: ignore
 				buf += f"\t**Default**: The value of :conf:`{cls.default.__name__}`\n\n"
-			# TODO: source dir repo root
 			elif isinstance(cls.default, bool):
 				buf += f"\t**Default**: :py:obj:`{cls.default}`\n\n"
 			elif isinstance(cls.default, str):

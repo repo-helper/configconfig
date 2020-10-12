@@ -17,7 +17,7 @@ from tests.classes import (
 		test_list_int,
 		test_list_str
 		)
-from tests.configuration import *
+from tests.configuration import *  # pylint: disable=wildcard-import
 
 
 class Test_author(RequiredStringTest):
