@@ -28,19 +28,17 @@ Base class for ``YAML`` configuration values.
 
 # stdlib
 from textwrap import dedent, indent
-from typing import Any, Callable, Dict, Iterable, List, Optional, Type, Union
+from typing import Any, Callable, Dict, Optional, Type
 
 # 3rd party
-from domdf_python_tools.utils import strtobool
-from typing_inspect import get_origin, is_literal_type  # type: ignore
+from typing_inspect import is_literal_type  # type: ignore
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
 from configconfig.utils import get_yaml_type, tab
+from configconfig.validator import Validator
 
 __all__ = ["ConfigVar"]
-
-from configconfig.validator import Validator
 
 
 class ConfigVar(metaclass=ConfigVarMeta):
@@ -151,105 +149,8 @@ class ConfigVar(metaclass=ConfigVarMeta):
 		if cls.rtype is None:
 			cls.rtype = cls.dtype
 
-		# Strings and Numbers
-		if cls.dtype in {str, int, float}:
-			obj = optional_getter(raw_config_vars, cls, cls.required)
-
-			if not isinstance(obj, cls.dtype):  # type: ignore
-				raise ValueError(f"'{cls.__name__}' must be a {cls.dtype}") from None
-
-			return cls.rtype(obj)
-
-		# Booleans
-		elif cls.dtype is bool:
-			obj = optional_getter(raw_config_vars, cls, cls.required)
-
-			if not isinstance(obj, (int, bool, str)):  # type: ignore
-				raise ValueError(f"'{cls.__name__}' must be one of {(int, bool, str)}") from None
-
-			return strtobool(obj)
-
-		# Lists of strings, numbers, Unions and Literals
-		elif get_origin(cls.dtype) in {list, List}:
-
-			buf = []
-
-			data = optional_getter(raw_config_vars, cls, cls.required)
-			if isinstance(data, str) or not isinstance(data, Iterable):
-				raise ValueError(f"'{cls.__name__}' must be a List of {cls.dtype.__args__[0]}") from None
-
-			if get_origin(cls.dtype.__args__[0]) is Union:
-				for obj in data:
-					if not check_union(obj, cls.dtype.__args__[0]):  # type: ignore
-						raise ValueError(f"'{cls.__name__}' must be a List of {cls.dtype.__args__[0]}") from None
-
-			elif is_literal_type(cls.dtype.__args__[0]):
-				for obj in data:
-					# if isinstance(obj, str):
-					# 	obj = obj.lower()
-					if obj not in cls.dtype.__args__[0].__args__:
-						raise ValueError(
-								f"Elements of '{cls.__name__}' must be one of {cls.dtype.__args__[0].__args__}"
-								) from None
-			else:
-				for obj in data:
-					if not check_union(obj, cls.dtype):  # type: ignore
-						raise ValueError(f"'{cls.__name__}' must be a List of {cls.dtype.__args__[0]}") from None
-
-			try:
-				for obj in data:
-					if cls.rtype.__args__[0] in {int, str, float, bool}:
-						buf.append(cls.rtype.__args__[0](obj))  # type: ignore
-					else:
-						buf.append(obj)  # type: ignore
-
-				return buf
-
-			except ValueError:
-				raise ValueError(f"Values in '{cls.__name__}' must be {cls.rtype.__args__[0]}") from None
-
-		# Dict[str, str]
-		elif cls.dtype == Dict[str, str]:
-			obj = optional_getter(raw_config_vars, cls, cls.required)
-			if not isinstance(obj, dict):
-				raise ValueError(f"'{cls.__name__}' must be a dictionary") from None
-
-			return obj
-
-		# Dict[str, Any]
-		elif cls.dtype == Dict[str, Any]:
-			obj = optional_getter(raw_config_vars, cls, cls.required)
-			if not isinstance(obj, dict):
-				raise ValueError(f"'{cls.__name__}' must be a dictionary") from None
-
-			return obj
-
-		# Unions of primitives
-		elif get_origin(cls.dtype) is Union:
-
-			obj = optional_getter(raw_config_vars, cls, cls.required)
-			if not check_union(obj, cls.dtype):
-				raise ValueError(f"'{cls.__name__}' must be one of {cls.dtype.__args__[0]}") from None
-
-			try:
-				return cls.rtype(obj)
-			except ValueError:
-				raise ValueError(f"'{cls.__name__}' must be {cls.rtype.__args__[0]}") from None
-
-		elif is_literal_type(cls.dtype):
-			obj = optional_getter(raw_config_vars, cls, cls.required)
-			# if isinstance(obj, str):
-			# 	obj = obj.lower()
-			if obj not in cls.dtype.__args__:
-				raise ValueError(f"'{cls.__name__}' must be one of {cls.dtype.__args__}") from None
-
-			return obj
-
-		else:
-			print(cls)
-			print(cls.dtype)
-			print(get_origin(cls.dtype))
-			raise NotImplementedError
+		validator = Validator(cls)
+		return validator.validate(raw_config_vars)
 
 	@classmethod
 	def make_documentation(cls):
