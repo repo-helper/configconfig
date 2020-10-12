@@ -1,6 +1,6 @@
 # stdlib
 import os
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, Iterable, List, Optional, Union
 
 # 3rd party
 from typing_extensions import Literal
@@ -322,8 +322,11 @@ class source_dir(ConfigVar):  # noqa
 	dtype = str
 	required = False
 	default = ''
-	validator = lambda x: os.path.join(x, '')
 	category: str = "metadata"
+
+	@classmethod
+	def validator(cls, value: str) -> str:
+		return os.path.join(value, '')
 
 
 class pure_python(ConfigVar):  # noqa
@@ -500,14 +503,14 @@ The lowest version of Python given above is used to set the minimum supported ve
 	dtype = List[Union[str, float]]
 	rtype = List[str]
 	default = default_python_versions
-	validator = lambda x: [str(ver) for ver in x if ver]
 	category: str = "python versions"
-	__name__ = "Foo"
+
+	@classmethod
+	def validator(cls, value: Iterable[str]) -> List[str]:
+		return [str(ver) for ver in value if ver]
 
 
 # Packaging
-
-
 class manifest_additional(ConfigVar):  # noqa
 	"""
 	A list of additional entries for ``MANIFEST.in``.

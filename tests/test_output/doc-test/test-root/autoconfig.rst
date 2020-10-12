@@ -25,3 +25,8 @@ Autoconfig
 
 .. autoconfig:: tests.configuration
 	:category: metadata
+
+
+:conf:`author`
+
+:conf:`title <on_pypi>`
