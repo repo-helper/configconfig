@@ -22,6 +22,8 @@ extras_require:
     - sphinx
     - sphinx-toolbox
     - docutils
+  testing:
+    - pytest
 
 tox_testenv_extras: all
 
