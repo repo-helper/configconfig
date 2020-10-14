@@ -5,7 +5,7 @@ from typing import Type
 import pytest
 
 # this package
-from tests.classes import (
+from configconfig.testing import (
 		BoolFalseTest,
 		BoolTrueTest,
 		DictTest,
