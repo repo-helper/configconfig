@@ -8,6 +8,8 @@ Helpers for testing :class:`~configconfig.configvar.ConfigVar`.
 .. extras-require:: testing
 	:__pkginfo__:
 
+
+.. versionadded:: 0.2.0
 """
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
