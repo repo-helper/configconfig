@@ -8,6 +8,10 @@ Provides the :rst:dir:`autoconfig` directive to document configuration
 values automatically, the :rst:dir:`conf` directive to document them manually,
 and the :rst:role:`conf` role to link to a :rst:dir:`conf` directive.
 
+.. extras-require:: sphinx
+	:__pkginfo__:
+
+
 Usage
 ---------
 
@@ -65,12 +69,12 @@ API Reference
 
 # stdlib
 import warnings
-from typing import Any, Dict, List, Type
+from typing import Any, Dict,  Sequence, Type
 
 # 3rd party
 from docutils import nodes
 from docutils.parsers.rst.directives import unchanged
-from docutils.statemachine import ViewList
+from docutils.statemachine import StringList
 from sphinx import addnodes
 from sphinx.application import Sphinx
 from sphinx.environment import BuildEnvironment
@@ -99,7 +103,7 @@ class AutoConfigDirective(SphinxDirective):
 	# or the name of the module if :category: given
 	option_spec = {"category": unchanged}
 
-	def run(self) -> List[nodes.Node]:
+	def run(self) -> Sequence[nodes.Node]:  # type: ignore
 		"""
 		Process the content of the directive.
 		"""
@@ -161,7 +165,7 @@ class AutoConfigDirective(SphinxDirective):
 		targetnode = nodes.section(ids=[targetid])
 
 		content = docstring.replace("\t", "    ")
-		view = ViewList(content.split("\n"))
+		view = StringList(content.split("\n"))
 		config_node = nodes.paragraph(rawsource=content)
 		self.state.nested_parse(view, self.content_offset, config_node)
 
@@ -170,7 +174,7 @@ class AutoConfigDirective(SphinxDirective):
 		return config_node
 
 
-def parse_conf_node(env: BuildEnvironment, text: str, node: nodes.Node) -> str:
+def parse_conf_node(env: BuildEnvironment, text: str, node: addnodes.desc_signature) -> str:
 	"""
 	Parse the content of a :rst:dir:`conf` directive.
 

@@ -54,8 +54,9 @@ class ConfigVarMeta(type):
 	default: Any
 	validator: Callable
 	category: str
+	__name__: str
 
-	def __new__(cls, name, bases, dct):
+	def __new__(cls, name: str, bases, dct: Dict):
 		x = cast("ConfigVar", super().__new__(cls, name, bases, dct))
 
 		x.dtype = dct.get("dtype", Any)

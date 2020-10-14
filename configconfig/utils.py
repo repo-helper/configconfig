@@ -178,7 +178,7 @@ def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 	return schema
 
 
-def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]):  # type: ignore
+def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:  # type: ignore
 	r"""
 	Check if the type of ``obj`` is one of the types in a :class:`typing.Union`, :class:`typing.List` etc.
 

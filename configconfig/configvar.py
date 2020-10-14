@@ -105,6 +105,8 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	The category the :class:`~configconfig.configvar.ConfigVar` is listed under in the documentation.
 	"""
 
+	__name__: str
+
 	@classmethod
 	def validator(cls, value: Any) -> Any:
 		"""
