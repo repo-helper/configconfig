@@ -105,7 +105,7 @@ class Validator:
 		:param raw_config_vars:
 		"""
 
-		return str(self._visit_str_number(raw_config_vars))
+		return self.config_var.rtype(self._visit_str_number(raw_config_vars))
 
 	def visit_int(self, raw_config_vars: RawConfigVars) -> int:
 		"""
@@ -114,7 +114,7 @@ class Validator:
 		:param raw_config_vars:
 		"""
 
-		return int(self._visit_str_number(raw_config_vars))
+		return self.config_var.rtype(self._visit_str_number(raw_config_vars))
 
 	def visit_float(self, raw_config_vars: RawConfigVars) -> float:
 		"""
@@ -123,7 +123,7 @@ class Validator:
 		:param raw_config_vars:
 		"""
 
-		return float(self._visit_str_number(raw_config_vars))
+		return self.config_var.rtype(self._visit_str_number(raw_config_vars))
 
 	def visit_bool(self, raw_config_vars: RawConfigVars) -> bool:
 		"""
@@ -137,7 +137,7 @@ class Validator:
 		if not isinstance(obj, (int, bool, str)):  # type: ignore
 			raise ValueError(f"'{self.config_var.__name__}' must be one of {(int, bool, str)}") from None
 
-		return strtobool(obj)
+		return self.config_var.rtype(strtobool(obj))
 
 	def visit_list(self, raw_config_vars: RawConfigVars) -> List:
 		"""
@@ -204,7 +204,7 @@ class Validator:
 			if not isinstance(obj, dict):
 				raise ValueError(f"'{self.config_var.__name__}' must be a dictionary") from None
 
-			return obj
+			return {str(k): str(v) for k, v in obj.items()}
 
 		# Dict[str, Any]
 		elif self.config_var.dtype == Dict[str, Any]:
@@ -213,6 +213,14 @@ class Validator:
 				raise ValueError(f"'{self.config_var.__name__}' must be a dictionary") from None
 
 			return obj
+
+		# Dict[str, List[str]
+		elif self.config_var.dtype == Dict[str, List[str]]:
+			obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
+			if not isinstance(obj, dict):
+				raise ValueError(f"'{self.config_var.__name__}' must be a dictionary") from None
+
+			return {str(k): [str(i) for i in v] for k, v in obj.items()}
 
 		else:
 			self.unknown_type()
