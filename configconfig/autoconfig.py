@@ -69,7 +69,7 @@ API Reference
 
 # stdlib
 import warnings
-from typing import Any, Dict,  Sequence, Type
+from typing import Any, Dict, Sequence, Type
 
 # 3rd party
 from docutils import nodes
