@@ -18,6 +18,7 @@ from configconfig.testing import (
 		test_list_str
 		)
 from tests.configuration import *  # pylint: disable=wildcard-import
+from tests.configuration import subclassed
 
 
 class Test_author(RequiredStringTest):
@@ -527,3 +528,10 @@ class Test_html_theme_options(DictTest):
 class Test_html_context(DictTest):
 	config_var = html_context
 	test_value = dict(key4="value4")
+
+
+def test_subclassing():
+	assert subclassed.dtype == List[Union[str, float]]
+	assert subclassed.rtype == List[str]
+	assert subclassed.default == default_python_versions
+	assert subclassed.category == "python versions"

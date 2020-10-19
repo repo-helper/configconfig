@@ -59,17 +59,22 @@ class ConfigVarMeta(type):
 	def __new__(cls, name: str, bases, dct: Dict):
 		x = cast("ConfigVar", super().__new__(cls, name, bases, dct))
 
-		x.dtype = dct.get("dtype", Any)
+		def get(name, default):
+			return dct.get(name, getattr(x, name, default))
+
+		x.dtype = get("dtype", Any)
 
 		if "rtype" in dct:
 			x.rtype = dct["rtype"]
+		elif getattr(x, "rtype", Any) != Any:
+			pass
 		else:
 			x.rtype = x.dtype
 
-		x.required = dct.get("required", False)
-		x.default = dct.get("default", '')
-		x.validator = dct.get("validator", lambda y: y)  # type: ignore
-		x.category = dct.get("category", "other")
+		x.required = get("required", False)
+		x.default = get("default", '')
+		x.validator = get("validator", lambda y: y)  # type: ignore
+		x.category = get("category", "other")
 		x.__name__ = dct.get("name", dct.get("__name__", x.__name__))  # type: ignore
 
 		return x

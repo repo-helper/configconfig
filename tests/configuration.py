@@ -73,6 +73,7 @@ all_values = [
 		"stubs_package",
 		"on_pypi",
 		"mypy_plugins",
+		"subclassed",
 		]
 
 
@@ -497,7 +498,7 @@ class python_versions(ConfigVar):  # noqa
 
 	If undefined the value of :conf:`python_deploy_version` is used instead.
 
-The lowest version of Python given above is used to set the minimum supported version for Pip, PyPI, setuptools etc.
+	The lowest version of Python given above is used to set the minimum supported version for Pip, PyPI, setuptools etc.
 	"""
 
 	dtype = List[Union[str, float]]
@@ -508,6 +509,12 @@ The lowest version of Python given above is used to set the minimum supported ve
 	@classmethod
 	def validator(cls, value: Iterable[str]) -> List[str]:
 		return [str(ver) for ver in value if ver]
+
+
+class subclassed(python_versions):  # noqa
+	"""
+	A subclassed configuration value
+	"""
 
 
 # Packaging
