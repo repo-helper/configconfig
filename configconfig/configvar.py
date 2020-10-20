@@ -126,7 +126,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	@classmethod
 	def get(cls, raw_config_vars: Optional[Dict[str, Any]] = None) -> Any:
 		"""
-		Returns the value of this :class:`~configconfig.configvar.ConfigVar`
+		Returns the value of this :class:`~configconfig.configvar.ConfigVar`.
 
 		:param raw_config_vars: Dictionary to obtain the value from.
 
@@ -156,6 +156,10 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 	@classmethod
 	def make_documentation(cls):
+		"""
+		Returns the reStructuredText documentation for the :class:`~.ConfVar`.
+		"""
+
 		docstring = cls.__doc__ or ''
 		docstring = (indent(dedent(docstring), tab))
 

@@ -201,7 +201,7 @@ def parse_conf_node(env: BuildEnvironment, text: str, node: addnodes.desc_signat
 
 def setup(app: Sphinx) -> Dict[str, Any]:
 	"""
-	Setup Sphinx Extension
+	Setup Sphinx Extension.
 
 	:param app: The Sphinx app
 	"""

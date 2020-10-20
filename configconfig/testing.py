@@ -66,7 +66,7 @@ test_list_str = ['a', 'b', 'c', 'd']
 
 class ConfigVarTest(ABC):
 	r"""
-	Base class for tests of :class:`~configconfig.configvar.ConfigVar`\s
+	Base class for tests of :class:`~configconfig.configvar.ConfigVar`\s.
 	"""
 
 	#: The :class:`~configconfig.configvar.ConfigVar` under test.
@@ -77,9 +77,9 @@ class NotIntTest(ConfigVarTest):
 	r"""
 	Mixin to add tests for :class:`~configconfig.configvar.ConfigVar`\s
 	that can't be integers.
-	"""
+	"""  # noqa: D400
 
-	def test_error_int(self):
+	def test_error_int(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: 1234})
 
@@ -88,9 +88,9 @@ class NotBoolTest(ConfigVarTest):
 	r"""
 	Mixin to add tests for :class:`~configconfig.configvar.ConfigVar`\s
 	that can't be boolean values.
-	"""
+	"""  # noqa: D400
 
-	def test_error_bool(self):
+	def test_error_bool(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: True})
 
@@ -99,9 +99,9 @@ class NotStrTest(ConfigVarTest):
 	r"""
 	Mixin to add tests for :class:`~configconfig.configvar.ConfigVar`\s
 	that can't be strings.
-	"""
+	"""  # noqa: D400
 
-	def test_error_str(self):
+	def test_error_str(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: "a string"})
 
@@ -123,14 +123,14 @@ class ListTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 	used by the :class:`~configconfig.configvar.ConfigVar`
 	"""
 
-	def test_success(self):
+	def test_success(self):  # noqa: D102
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == self.test_value
 		assert self.config_var.get({self.config_var.__name__: []}) == []
 		assert self.config_var.get(self.different_key_value) == self.default_value
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_error_list_int(self):
+	def test_error_list_int(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
@@ -152,17 +152,17 @@ class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 	used by the :class:`~configconfig.configvar.ConfigVar`
 	"""
 
-	def test_success(self):
+	def test_success(self):  # noqa: D102
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == self.test_value
 		assert self.config_var.get(self.different_key_value) == self.default_value
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_error_list_int(self):
+	def test_error_list_int(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
-	def test_error_list_str(self):
+	def test_error_list_str(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: test_list_str})
 
@@ -183,7 +183,7 @@ class BoolTrueTest(ConfigVarTest):
 		"""
 		A list of values which should be considered :py:obj:`True`
 		by the :class:`~configconfig.configvar.ConfigVar`.
-		"""
+		"""  # noqa: D400
 
 		return [
 				{self.config_var.__name__: True},
@@ -200,7 +200,7 @@ class BoolTrueTest(ConfigVarTest):
 		"""
 		A list of values which should be considered :py:obj:`False`
 		by the :class:`~configconfig.configvar.ConfigVar`.
-		"""
+		"""  # noqa: D400
 
 		return [
 				{self.config_var.__name__: 0},
@@ -208,14 +208,14 @@ class BoolTrueTest(ConfigVarTest):
 				{self.config_var.__name__: "False"},
 				]
 
-	def test_empty_get(self):
+	def test_empty_get(self):  # noqa: D102
 		assert self.config_var.get()
 
-	def test_true(self):
+	def test_true(self):  # noqa: D102
 		for true_value in self.true_values:
 			assert self.config_var.get(true_value)
 
-	def test_false(self):
+	def test_false(self):  # noqa: D102
 		for false_value in self.false_values:
 			assert not self.config_var.get(false_value)
 
@@ -231,7 +231,7 @@ class BoolTrueTest(ConfigVarTest):
 				{self.config_var.__name__: test_list_str},
 				]
 
-	def test_errors(self):
+	def test_errors(self):  # noqa: D102
 		for wrong_value in self.wrong_values:
 			with pytest.raises(ValueError):
 				self.config_var.get(wrong_value)
@@ -268,7 +268,7 @@ class BoolFalseTest(BoolTrueTest):
 				{},
 				]
 
-	def test_empty_get(self):
+	def test_empty_get(self):  # noqa: D102
 		assert not self.config_var.get()
 
 
@@ -280,11 +280,11 @@ class RequiredStringTest(ConfigVarTest):
 	#: A value that is valid and should be returned unchanged.
 	test_value: str
 
-	def test_empty_get(self):
+	def test_empty_get(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get()
 
-	def test_success(self):
+	def test_success(self):  # noqa: D102
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == self.test_value
 
 	@property
@@ -300,7 +300,7 @@ class RequiredStringTest(ConfigVarTest):
 				{self.config_var.__name__: test_list_str},
 				]
 
-	def test_errors(self):
+	def test_errors(self):  # noqa: D102
 		for wrong_value in self.wrong_values:
 			with pytest.raises(ValueError):
 				self.config_var.get(wrong_value)
@@ -320,17 +320,17 @@ class OptionalStringTest(RequiredStringTest):
 	used by the :class:`~configconfig.configvar.ConfigVar`
 	"""
 
-	def test_empty_get(self):
+	def test_empty_get(self):  # noqa: D102
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_success(self):
+	def test_success(self):  # noqa: D102
 		assert self.config_var.get({self.config_var.__name__: ''}) == ''
 		assert self.config_var.get(self.different_key_value) == self.default_value
 		super().test_success()
 
 	@property
-	def wrong_values(self) -> List[Dict[str, Any]]:
+	def wrong_values(self) -> List[Dict[str, Any]]:  # noqa: D102
 		return [
 				{self.config_var.__name__: 1234},
 				{self.config_var.__name__: True},
@@ -338,7 +338,7 @@ class OptionalStringTest(RequiredStringTest):
 				{self.config_var.__name__: test_list_str},
 				]
 
-	def test_errors(self):
+	def test_errors(self):  # noqa: D102
 		for wrong_value in self.wrong_values:
 			with pytest.raises(ValueError):
 				self.config_var.get(wrong_value)
@@ -355,16 +355,16 @@ class EnumTest(RequiredStringTest):
 	#: The default value that should be returned when no valid is given.
 	default_value: str
 
-	def test_empty_get(self):
+	def test_empty_get(self):  # noqa: D102
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_non_enum(self):
+	def test_non_enum(self):  # noqa: D102
 		for non_enum in self.non_enum_values:
 			with pytest.raises(ValueError):
 				self.config_var.get({self.config_var.__name__: non_enum})
 
-	def test_errors(self):
+	def test_errors(self):  # noqa: D102
 		wrong_values: List[Dict[str, Any]] = [
 				{self.config_var.__name__: 1234},
 				{self.config_var.__name__: True},
@@ -393,13 +393,13 @@ class DictTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 	used by the :class:`~configconfig.configvar.ConfigVar`
 	"""
 
-	def test_success(self):
+	def test_success(self):  # noqa: D102
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == self.test_value
 		assert self.config_var.get({self.config_var.__name__: {}}) == {}
 		assert self.config_var.get(self.different_key_value) == self.default_value
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_error_list_int(self):
+	def test_error_list_int(self):  # noqa: D102
 		with pytest.raises(ValueError):
 			self.config_var.get({self.config_var.__name__: test_list_int})

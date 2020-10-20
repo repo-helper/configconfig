@@ -2,7 +2,7 @@
 #
 #  utils.py
 """
-Utility functions
+Utility functions.
 """
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -115,10 +115,10 @@ yaml_type_lookup = {
 
 
 def get_yaml_type(type_: Type) -> str:
-	"""
+	r"""
 	Get the YAML type that corresponds to the given Python type.
 
-	:param type_:
+	:param type\_:
 	"""
 
 	if type_ in yaml_type_lookup:
