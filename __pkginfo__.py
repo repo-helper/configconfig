@@ -17,22 +17,9 @@ import pathlib
 __all__ = [
 		"__copyright__",
 		"__version__",
-		"modname",
-		"pypi_name",
-		"__license__",
-		"__author__",
-		"short_desc",
-		"author",
-		"author_email",
-		"github_username",
-		"web",
-		"github_url",
 		"repo_root",
 		"install_requires",
 		"extras_require",
-		"project_urls",
-
-		"import_name",
 		]
 
 __copyright__ = """
@@ -40,23 +27,11 @@ __copyright__ = """
 """
 
 __version__ = "0.2.0"
-modname = "configconfig"
-pypi_name = "configconfig"
-import_name = "configconfig"
-__license__ = "MIT License"
-short_desc = 'Load and validate YAML configuration files.'
-__author__ = author = 'Dominic Davis-Foster'
-author_email = 'dominic@davis-foster.co.uk'
-github_username = "domdfcoding"
-web = github_url = "https://github.com/domdfcoding/configconfig"
+
 repo_root = pathlib.Path(__file__).parent
 install_requires = (repo_root / "requirements.txt").read_text(encoding="utf-8").split('\n')
-extras_require = {'sphinx': ['sphinx', 'sphinx-toolbox', 'docutils'], 'testing': ['pytest'], 'all': ['docutils', 'pytest', 'sphinx', 'sphinx-toolbox']}
-
-
-
-project_urls = {
-		"Documentation": "https://configconfig.readthedocs.io",
-		"Issue Tracker": f"{github_url}/issues",
-		"Source Code": github_url,
+extras_require = {
+		'sphinx': ['sphinx', 'sphinx-toolbox', 'docutils'],
+		'testing': ['pytest'],
+		'all': ['docutils', 'pytest', 'sphinx', 'sphinx-toolbox']
 		}
