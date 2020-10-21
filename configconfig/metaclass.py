@@ -30,11 +30,8 @@ Metaclass for configuration values.
 from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, Callable, Dict, Mapping, Optional, Type, cast
 
-# 3rd party
-from typing_inspect import get_origin  # type: ignore
-
 # this package
-from configconfig.utils import get_json_type
+from configconfig.utils import basic_schema, get_json_type
 
 __all__ = ["ConfigVarMeta"]
 
@@ -90,8 +87,7 @@ class ConfigVarMeta(type):
 
 		if schema is None:
 			schema = {
-					"$schema": "http://json-schema.org/schema#",
-					"type": "object",
+					**basic_schema,
 					"properties": {},
 					"required": [],
 					}
@@ -100,6 +96,12 @@ class ConfigVarMeta(type):
 
 		if cls.required:
 			schema["required"].append(cls.__name__)
+
+		for line in (cls.__doc__ or '').split("\n\n"):
+			line = " ".join([p.strip() for p in line.split("\n") if p.strip()])
+			if line:
+				schema["properties"][cls.__name__]["description"] = line
+				break
 
 		return schema
 

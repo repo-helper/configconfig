@@ -1,6 +1,8 @@
-$schema: http://json-schema.org/schema#
+$schema: http://json-schema.org/draft-07/schema
 properties:
   python_versions:
+    description: A list of the version(s) of Python to use when performing tests with
+      Tox, E.g.
     items:
       type:
       - string

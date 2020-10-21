@@ -1,6 +1,7 @@
-$schema: http://json-schema.org/schema#
+$schema: http://json-schema.org/draft-07/schema
 properties:
   manifest_additional:
+    description: A list of additional entries for ``MANIFEST.in``.
     items:
       type: string
     type: array

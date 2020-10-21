@@ -57,12 +57,13 @@ from tests.configuration import (
 @pytest.mark.parametrize(
 		"configvar",
 		[
-				# python_versions,
-				# manifest_additional,
-				# extras_require,
-				platforms,  # rtfd_author,
-				# preserve_custom_theme,
-				# sphinx_html_theme,
+				python_versions,
+				manifest_additional,
+				extras_require,
+				platforms,
+				rtfd_author,
+				preserve_custom_theme,
+				sphinx_html_theme,
 				]
 		)
 def test_get_schema_entry(configvar: ConfigVarMeta, data_regression: DataRegressionFixture):

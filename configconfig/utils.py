@@ -30,6 +30,7 @@ Utility functions.
 import copy
 import sys
 from enum import EnumMeta
+from types import MappingProxyType
 from typing import TYPE_CHECKING, Any, Callable, Dict, List, Type, TypeVar, Union
 
 # 3rd party
@@ -72,7 +73,7 @@ else:  # pragma: no cover (>=py38)
 		return ()
 
 
-__all__ = ["optional_getter", "get_yaml_type", "make_schema", "check_union", "get_json_type", "tab"]
+__all__ = ["basic_schema", "optional_getter", "get_yaml_type", "make_schema", "check_union", "get_json_type", "tab",]
 
 tab = "\t"
 UnionType = type(Union)
@@ -155,6 +156,12 @@ def get_yaml_type(type_: Type) -> str:
 		return str(type_)
 
 
+basic_schema = MappingProxyType({
+		"$schema": "http://json-schema.org/draft-07/schema",
+		"type": "object",
+		})
+
+
 def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 	"""
 	Create a ``JSON`` schema from a list of :class:`~configconfig.class.ConfigVar` classes.
@@ -165,8 +172,7 @@ def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 	"""
 
 	schema = {
-			"$schema": "http://json-schema.org/schema#",
-			"type": "object",
+			**basic_schema,
 			"properties": {},
 			"required": [],
 			"additionalProperties": False,

@@ -1,6 +1,8 @@
-$schema: http://json-schema.org/schema#
+$schema: http://json-schema.org/draft-07/schema
 properties:
   extras_require:
+    description: A dictionary of extra requirements, where the keys are the names
+      of the extras and the values are a list of requirements.
     type: object
 required: []
 type: object

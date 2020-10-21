@@ -1,6 +1,8 @@
-$schema: http://json-schema.org/schema#
+$schema: http://json-schema.org/draft-07/schema
 properties:
   preserve_custom_theme:
+    description: Whether custom documentation theme styling in ``_static/style.css``
+      and ``_templates/layout.html`` should be preserved.
     type:
     - boolean
     - string

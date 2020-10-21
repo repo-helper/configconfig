@@ -663,7 +663,8 @@ class setup_pre(ConfigVar):  # noqa
 
 class platforms(ConfigVar):  # noqa
 	"""
-	A case-insensitive list of platforms to perform tests for.
+	A case-insensitive list of
+	platforms to perform tests for.
 
 	Example:
 

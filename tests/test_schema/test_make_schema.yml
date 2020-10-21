@@ -1,85 +1,118 @@
-$schema: http://json-schema.org/schema#
+$schema: http://json-schema.org/draft-07/schema
 additionalProperties: false
 properties:
   additional_setup_args:
+    description: A dictionary of additional keyword arguments for :func:`setuptools.setup()`.
+      The values can refer to variables in ``__pkginfo__.py``. String values must
+      be enclosed in quotes here.
     type: object
   author:
+    description: The name of the package author.
     type: string
   console_scripts:
+    description: A list of entries for ``console_scripts`` in ``setup.py``. Each entry
+      must follow the same format as required in ``setup.py``.
     items:
       type: string
     type: array
   copyright_years:
+    description: The copyright_years of the package.
     type:
     - string
     - number
   docker_name:
+    description: The name of the docker image on dockerhub.
     type: string
   docker_shields:
+    description: Whether shields for docker container image size and build status
+      should be shown.
     type:
     - boolean
     - string
   docs_dir:
+    description: The directory containing the docs code of the project.
     type: string
   email:
+    description: The email address of the author or maintainer.
     type: string
   enable_docs:
+    description: Whether documentation should be built and deployed.
     type:
     - boolean
     - string
   enable_pre_commit:
+    description: Whether pre-commit should be installed and configured.
     type:
     - boolean
     - string
   enable_releases:
+    description: Whether packages should be copied from PyPI to GitHub Releases.
     type:
     - boolean
     - string
   enable_tests:
+    description: Whether tests should be performed with pytest.
     type:
     - boolean
     - string
   extra_sphinx_extensions:
+    description: A list of additional extensions to enable for Sphinx.
     items:
       type: string
     type: array
   html_context:
+    description: A dictionary of configuration values for the documentation HTML context.
+      String values must be encased in quotes.
     type: object
   html_theme_options:
+    description: A dictionary of configuration values for the documentation HTML theme.
+      String values must be encased in quotes.
     type: object
   imgbot_ignore:
+    description: A list of additional glob ignores for imgbot.
     items:
       type: string
     type: array
   import_name:
+    description: The name the package is imported with, if different to :conf:`modname`.
     type: string
   intersphinx_mapping:
+    description: A list of additional entries for ``intersphinx_mapping`` for Sphinx.
+      Each entry must be enclosed in double quotes.
     items:
       type: string
     type: array
   keywords:
+    description: A list of keywords for the project.
     items:
       type: string
     type: array
   manifest_additional:
+    description: A list of additional entries for ``MANIFEST.in``.
     items:
       type: string
     type: array
   modname:
+    description: The name of the package.
     type: string
   mypy_deps:
+    description: A list of additional packages to install in Tox when running mypy.
+      Usually type stubs.
     items:
       type: string
     type: array
   mypy_plugins:
+    description: A list of plugins to enable for mypy.
     items:
       type: string
     type: array
   on_pypi:
+    description: Flag to indicate the package is available on PyPI
     type:
     - boolean
     - string
   platforms:
+    description: A case-insensitive list of platforms to perform tests for.
     items:
       enum:
       - Windows
@@ -87,70 +120,100 @@ properties:
       - Linux
     type: array
   preserve_custom_theme:
+    description: Whether custom documentation theme styling in ``_static/style.css``
+      and ``_templates/layout.html`` should be preserved.
     type:
     - boolean
     - string
   pure_python:
+    description: Flag to indicate the package is pure Python
     type:
     - boolean
     - string
   py_modules:
+    description: A list of values for ``py_modules`` in ``setup.py``, which indicate
+      the single-file modules to include in the distributions.
     items:
       type: string
     type: array
   pypi_name:
+    description: The name of project on PyPI, if different to :conf:`modname`.
     type: string
   python_deploy_version:
+    description: The version of Python to use on Travis when deploying to PyPI, Anaconda
+      and GitHub releases.
     type:
     - string
     - number
   python_versions:
+    description: A list of the version(s) of Python to use when performing tests with
+      Tox, E.g.
     items:
       type:
       - string
       - number
     type: array
   repo_name:
+    description: The name of GitHub repository, if different to :conf:`modname`.
     type: string
   rtfd_author:
+    description: The name of the author to show on ReadTheDocs, if different.
     type: string
   setup_pre:
+    description: A list of additional python lines to insert at the beginnning of
+      ``setup.py``.
     items:
       type: string
     type: array
   short_desc:
+    description: A short description of the project. Used by PyPI.
     type: string
   source_dir:
+    description: The directory containing the source code of the project.
     type: string
   sphinx_conf_epilogue:
+    description: Like :conf:`sphinx_conf_preamble`, but the lines are inserted at
+      the end of the file. Intent lines with a single tab to form part of the ``setup``
+      function.
     items:
       type: string
     type: array
   sphinx_conf_preamble:
+    description: A list of lines of Python code to add to the top of ``conf.py``.
+      These could be additional settings for Sphinx or calls to extra scripts that
+      must be executed before building the documentation.
     items:
       type: string
     type: array
   sphinx_html_theme:
+    description: The HTML theme to use for Sphinx. Also adds the appropriate values
+      to :conf:`extra_sphinx_extensions`, :conf:`html_theme_options`, and :conf:`html_context_options`.
     enum:
     - sphinx_rtd_theme
     - alabaster
     - repo_helper_sphinx_theme
     - domdf_sphinx_theme
   stubs_package:
+    description: Flag to indicate the package is a PEP 561 stubs package.
     type:
     - boolean
     - string
   tox_build_requirements:
+    description: A list of additional Python build requirements for Tox.
     items:
       type: string
     type: array
   tox_requirements:
+    description: A list of additional Python requirements for Tox.
     items:
       type: string
     type: array
   tox_testenv_extras:
+    description: The "Extra" requirement to install when installing the package in
+      the Tox testenv.
     type: string
   username:
+    description: The username of the GitHub account hosting the repository.
     type: string
 required:
 - author

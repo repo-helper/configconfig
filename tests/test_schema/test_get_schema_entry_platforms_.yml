@@ -1,6 +1,7 @@
-$schema: http://json-schema.org/schema#
+$schema: http://json-schema.org/draft-07/schema
 properties:
   platforms:
+    description: A case-insensitive list of platforms to perform tests for.
     items:
       enum:
       - Windows
