@@ -31,6 +31,7 @@ from textwrap import dedent, indent
 from typing import Any, Callable, Dict, Optional, Type
 
 # 3rd party
+from domdf_python_tools.stringlist import StringList
 from typing_inspect import is_literal_type  # type: ignore
 
 # this package
@@ -166,40 +167,52 @@ class ConfigVar(metaclass=ConfigVarMeta):
 		if not docstring.startswith("\n"):
 			docstring = "\n" + docstring
 
-		buf = dedent(
-				f"""
-		.. conf:: {cls.__name__}
-		{docstring}
+		buf = StringList()
+		buf.indent_type = "    "
+		buf.blankline(ensure_single=True)
+		buf.append(f".. conf:: {cls.__name__}")
+		buf.append(docstring)
+		buf.blankline()
 
-			**Required**: {'yes' if cls.required else 'no'}
+		buf.indent_size += 1
 
-		"""
-				)
+		buf.append(f"**Required**: {'yes' if cls.required else 'no'}")
+		buf.blankline()
+		buf.blankline()
 
 		if not cls.required:
 			if cls.default == []:
-				buf += "\t**Default**: [ ]\n\n"
+				buf.append("**Default**: [ ]")
 			elif cls.default == {}:
-				buf += "\t**Default**: { }\n\n"
+				buf.append("**Default**: { }")
 			elif isinstance(cls.default, Callable):  # type: ignore
-				buf += f"\t**Default**: The value of :conf:`{cls.default.__name__}`\n\n"
+				buf.append(f"**Default**: The value of :conf:`{cls.default.__name__}`")
 			elif isinstance(cls.default, bool):
-				buf += f"\t**Default**: :py:obj:`{cls.default}`\n\n"
+				buf.append(f"**Default**: :py:obj:`{cls.default}`")
 			elif isinstance(cls.default, str):
 				if cls.default == '':
-					buf += "\t**Default**: <blank>\n\n"
+					buf.append("**Default**: <blank>")
 				else:
-					buf += f"\t**Default**: ``{cls.default}``\n\n"
+					buf.append(f"**Default**: ``{cls.default}``")
 			else:
-				buf += f"\t**Default**: {cls.default}\n\n"
+				buf.append(f"**Default**: {cls.default}")
 
-		buf += f"\t**Type**: {get_yaml_type(cls.dtype)}"
+			buf.blankline()
+			buf.blankline()
+
+		buf.append(f"**Type**: {get_yaml_type(cls.dtype)}")
 
 		if is_literal_type(cls.dtype):
 			valid_values = ", ".join(f"``{x}``" for x in cls.dtype.__args__)
-			buf += f"\n\n\t**Allowed values**: {valid_values}"
+			buf.blankline()
+			buf.blankline()
+			buf.append(f"**Allowed values**: {valid_values}")
 		elif hasattr(cls.dtype, "__args__") and is_literal_type(cls.dtype.__args__[0]):
 			valid_values = ", ".join(f"``{x}``" for x in cls.dtype.__args__[0].__args__)
-			buf += f"\n\n\t**Allowed values**: {valid_values}"
+			buf.blankline()
+			buf.blankline()
+			buf.append(f"**Allowed values**: {valid_values}")
 
-		return buf
+		buf.indent_size -= 1
+
+		return str(buf)
