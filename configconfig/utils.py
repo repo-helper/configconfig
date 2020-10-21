@@ -25,6 +25,13 @@ Utility functions.
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 #  OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#  gat_args based on CPython.
+#  Licensed under the Python Software Foundation License Version 2.
+#  Copyright © 2001-2020 Python Software Foundation. All rights reserved.
+#  Copyright © 2000 BeOpen.com . All rights reserved.
+#  Copyright © 1995-2000 Corporation for National Research Initiatives . All rights reserved.
+#  Copyright © 1991-1995 Stichting Mathematisch Centrum . All rights reserved.
+#
 
 # stdlib
 import copy
@@ -85,6 +92,7 @@ __all__ = [
 		"tab",
 		]
 
+#: A literal ``TAB`` (``\t``) character for use in f-strings.
 tab = "\t"
 
 if sys.version_info < (3, 7):
@@ -119,6 +127,7 @@ def optional_getter(raw_config_vars: Dict[str, Any], cls: "ConfigVarMeta", requi
 				return copy.deepcopy(cls.default)
 
 
+#: Mapping of Python types to their YAML equivalents.
 yaml_type_lookup = {
 		str: "String",
 		int: "Integer",
@@ -238,8 +247,8 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 
 	elif check_type(type_, list, List):
 		args = get_args(type_)
-		if args:
 
+		if args:
 			items = get_json_type(args[0])
 
 			if items is NotImplemented:
@@ -269,6 +278,7 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 		return NotImplemented
 
 
+#: Mapping of Python types to their JSON equivalents.
 json_type_lookup = {
 		str: "string",
 		int: "number",
@@ -279,6 +289,14 @@ json_type_lookup = {
 
 
 def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore
+	"""
+	Returns a tuple of permitted values for a :class:`typing.Literal`.
+
+	:param literal:
+
+	.. versionadded:: 0.3.0
+	"""
+
 	if sys.version_info < (3, 7):
 		return literal.__values__
 	else:

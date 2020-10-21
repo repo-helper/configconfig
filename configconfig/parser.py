@@ -45,7 +45,35 @@ __all__ = ["Parser"]
 
 class Parser:
 	"""
-	Methods are named ``visit_<configuration value name>``.
+	Base class for YAML configuration parsers.
+
+	Custom parsing steps for each configuration variable can be implemented with methods in the form:
+
+	.. code-block:: python
+
+
+		def visit_<configuration value name>(self, raw_config_vars: Dict[str, Any]) -> Any: ...
+
+	The method must return the value to set the configuration variable to,
+	or raise an error in the case of invalid input.
+
+	|
+
+	A final custom parsing step, useful when several values must be set at once,
+	may be implemented in the ``custom_parsing`` method:
+
+	.. code-block:: python
+
+		def custom_parsing(
+			self,
+			raw_config_vars: Mapping[str, Any],
+			parsed_config_vars: MutableMapping[str, Any],
+			filename: PathPlus,
+			) -> MutableMapping[str, Any]: ...
+
+	This takes the mapping of raw configuration variables,
+	the mapping of parsed variables (those set with the ``visit_<configuration value name>`` method),
+	and the configuration file name. The method must return the ``parsed_config_vars``.
 	"""
 
 	config_vars: List[ConfigVarMeta]
@@ -88,7 +116,7 @@ class Parser:
 			raw_config_vars: Mapping[str, Any],
 			parsed_config_vars: MutableMapping[str, Any],
 			filename: PathPlus,
-			):
+			) -> MutableMapping[str, Any]:
 		"""
 		Custom parsing step.
 

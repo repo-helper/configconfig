@@ -166,13 +166,15 @@ class ConfigVar(metaclass=ConfigVarMeta):
 		if not docstring.startswith("\n"):
 			docstring = "\n" + docstring
 
-		buf = f"""
-.. conf:: {cls.__name__}
-{docstring}
+		buf = dedent(
+				f"""
+		.. conf:: {cls.__name__}
+		{docstring}
 
-	**Required**: {'yes' if cls.required else 'no'}
+			**Required**: {'yes' if cls.required else 'no'}
 
-"""
+		"""
+				)
 
 		if not cls.required:
 			if cls.default == []:
