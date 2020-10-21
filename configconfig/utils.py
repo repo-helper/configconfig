@@ -129,10 +129,8 @@ yaml_type_lookup = {
 		Any: "anything",
 		}
 
-_SpecialForm = type(Literal)
 
-
-def check_type(left: Type, *right: Union[Type, _SpecialForm]):  # type: ignore
+def check_type(left: Type, *right: Type):
 	return left in right or get_origin(left) in right
 
 
@@ -258,7 +256,7 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 	elif check_type(type_, dict, Dict):
 		return {"type": "object"}
 
-	elif check_type(type_, Literal) or is_literal_type(type_):
+	elif check_type(type_, Literal) or is_literal_type(type_):  # type: ignore
 		return {"enum": [x for x in get_literal_values(type_)]}
 
 	elif isinstance(type_, EnumMeta):
