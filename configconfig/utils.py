@@ -29,6 +29,7 @@ Utility functions.
 # stdlib
 import copy
 import sys
+import typing
 from enum import EnumMeta
 from types import MappingProxyType
 from typing import TYPE_CHECKING, Any, Callable, Dict, List, Type, TypeVar, Union
@@ -73,11 +74,25 @@ else:  # pragma: no cover (>=py38)
 		return ()
 
 
-__all__ = ["basic_schema", "optional_getter", "get_yaml_type", "make_schema", "check_union", "get_json_type", "tab",]
+__all__ = [
+		"get_literal_values",
+		"basic_schema",
+		"optional_getter",
+		"get_yaml_type",
+		"make_schema",
+		"check_union",
+		"get_json_type",
+		"tab",
+		]
 
 tab = "\t"
-UnionType = type(Union)
-GenericAliasType = type(List)
+
+if sys.version_info < (3, 7):
+	UnionType = Any
+	GenericAliasType = Any
+else:
+	UnionType = type(Union)
+	GenericAliasType = type(List)
 
 
 def optional_getter(raw_config_vars: Dict[str, Any], cls: "ConfigVarMeta", required: bool) -> Any:
@@ -114,6 +129,12 @@ yaml_type_lookup = {
 		Any: "anything",
 		}
 
+_SpecialForm = type(Literal)
+
+
+def check_type(left: Type, *right: Union[Type, _SpecialForm]):  # type: ignore
+	return left in right or get_origin(left) in right
+
 
 def get_yaml_type(type_: Type) -> str:
 	r"""
@@ -129,15 +150,23 @@ def get_yaml_type(type_: Type) -> str:
 		dtype = " or ".join(yaml_type_lookup[x] for x in type_.__args__)
 		return dtype
 
-	elif get_origin(type_) in {list, List}:
-		inner_types = (get_yaml_type(x) for x in get_args(type_) if not isinstance(x, TypeVar))
+	elif check_type(type_, list, List):
+		args = get_args(type_)
+
+		inner_types: typing.Iterable[str]
+
+		if args:
+			inner_types = (get_yaml_type(x) for x in args if not isinstance(x, TypeVar))
+		else:
+			inner_types = ()
+
 		dtype = " or ".join(inner_types)
 		if dtype:
 			return f"Sequence of {dtype}"
 		else:
 			return "Sequence"
 
-	elif get_origin(type_) in {dict, Dict}:
+	elif check_type(type_, dict, Dict):
 		args = get_args(type_)
 		if not args or any(isinstance(t, TypeVar) for t in args):
 			return "Mapping"
@@ -146,7 +175,7 @@ def get_yaml_type(type_: Type) -> str:
 			return f"Mapping of {dtype}"
 
 	elif is_literal_type(type_):
-		types = [y for y in type_.__args__]
+		types = [y for y in get_literal_values(type_)]
 		return " or ".join(repr(x) for x in types)
 
 	elif isinstance(type_, EnumMeta):
@@ -209,7 +238,7 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 	elif get_origin(type_) is Union:
 		return {"type": [get_json_type(t)["type"] for t in type_.__args__]}
 
-	elif get_origin(type_) in {list, List}:
+	elif check_type(type_, list, List):
 		args = get_args(type_)
 		if args:
 
@@ -226,11 +255,11 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 
 		return {"type": "array"}
 
-	elif get_origin(type_) in {dict, Dict}:
+	elif check_type(type_, dict, Dict):
 		return {"type": "object"}
 
-	elif get_origin(type_) is Literal:
-		return {"enum": [x for x in type_.__args__]}
+	elif check_type(type_, Literal) or is_literal_type(type_):
+		return {"enum": [x for x in get_literal_values(type_)]}
 
 	elif isinstance(type_, EnumMeta):
 		return {"enum": [x._value_ for x in type_]}  # type: ignore
@@ -249,3 +278,10 @@ json_type_lookup = {
 		dict: "object",
 		list: "array",
 		}
+
+
+def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore
+	if sys.version_info < (3, 7):
+		return literal.__values__
+	else:
+		return literal.__args__

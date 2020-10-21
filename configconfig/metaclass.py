@@ -92,7 +92,11 @@ class ConfigVarMeta(type):
 					"required": [],
 					}
 
-		schema["properties"][cls.__name__] = get_json_type(cls.dtype)
+		dtype = get_json_type(cls.dtype)
+		if dtype is NotImplemented:
+			raise NotImplementedError(cls.__name__, cls.dtype)
+		else:
+			schema["properties"][cls.__name__] = dtype
 
 		if cls.required:
 			schema["required"].append(cls.__name__)

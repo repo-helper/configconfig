@@ -35,7 +35,7 @@ from typing_inspect import get_origin, is_literal_type  # type: ignore
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
-from configconfig.utils import check_union, optional_getter
+from configconfig.utils import check_union, get_literal_values, optional_getter
 
 __all__ = ["Validator"]
 
@@ -166,9 +166,9 @@ class Validator:
 			for obj in data:
 				# if isinstance(obj, str):
 				# 	obj = obj.lower()
-				if obj not in self.config_var.dtype.__args__[0].__args__:
+				if obj not in get_literal_values(self.config_var.dtype.__args__[0]):
 					raise ValueError(
-							f"Elements of '{self.config_var.__name__}' must be one of {self.config_var.dtype.__args__[0].__args__}"
+							f"Elements of '{self.config_var.__name__}' must be one of {get_literal_values(self.config_var.dtype.__args__[0])}"
 							) from None
 		else:
 			for obj in data:
@@ -253,9 +253,9 @@ class Validator:
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 		# if isinstance(obj, str):
 		# 	obj = obj.lower()
-		if obj not in self.config_var.dtype.__args__:
+		if obj not in get_literal_values(self.config_var.dtype):
 			raise ValueError(
-					f"'{self.config_var.__name__}' must be one of {self.config_var.dtype.__args__}"
+					f"'{self.config_var.__name__}' must be one of {get_literal_values(self.config_var.dtype)}"
 					) from None
 
 		return obj
