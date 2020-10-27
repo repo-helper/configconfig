@@ -220,7 +220,7 @@ def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 	return schema
 
 
-def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:  # type: ignore
+def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:
 	r"""
 	Check if the type of ``obj`` is one of the types in a :class:`typing.Union`, :class:`typing.List` etc.
 
@@ -229,7 +229,7 @@ def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:  #
 	:type dtype: :class:`~typing.Union`\, :class:`~typing.List`\, etc.
 	"""
 
-	return isinstance(obj, dtype.__args__)  # type: ignore
+	return isinstance(obj, dtype.__args__)
 
 
 def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:

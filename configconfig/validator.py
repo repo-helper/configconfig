@@ -93,7 +93,7 @@ class Validator:
 	def _visit_str_number(self, raw_config_vars: RawConfigVars) -> Union[str, int, float]:
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 
-		if not isinstance(obj, self.config_var.dtype):  # type: ignore
+		if not isinstance(obj, self.config_var.dtype):
 			raise ValueError(f"'{self.config_var.__name__}' must be a {self.config_var.dtype}") from None
 
 		return obj
@@ -134,7 +134,7 @@ class Validator:
 
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 
-		if not isinstance(obj, (int, bool, str)):  # type: ignore
+		if not isinstance(obj, (int, bool, str)):
 			raise ValueError(f"'{self.config_var.__name__}' must be one of {(int, bool, str)}") from None
 
 		return self.config_var.rtype(strtobool(obj))
@@ -157,7 +157,7 @@ class Validator:
 
 		if get_origin(self.config_var.dtype.__args__[0]) is Union:
 			for obj in data:
-				if not check_union(obj, self.config_var.dtype.__args__[0]):  # type: ignore
+				if not check_union(obj, self.config_var.dtype.__args__[0]):
 					raise ValueError(
 							f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
 							) from None
@@ -172,7 +172,7 @@ class Validator:
 							) from None
 		else:
 			for obj in data:
-				if not check_union(obj, self.config_var.dtype):  # type: ignore
+				if not check_union(obj, self.config_var.dtype):
 					raise ValueError(
 							f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
 							) from None
@@ -180,9 +180,9 @@ class Validator:
 		try:
 			for obj in data:
 				if self.config_var.rtype.__args__[0] in {int, str, float, bool}:
-					buf.append(self.config_var.rtype.__args__[0](obj))  # type: ignore
+					buf.append(self.config_var.rtype.__args__[0](obj))
 				else:
-					buf.append(obj)  # type: ignore
+					buf.append(obj)
 
 			return buf
 
