@@ -25,19 +25,27 @@ Validate values obtained from the ``YAML`` file and coerce into the appropriate 
 #  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 #  OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#  validate based on https://github.com/yaccob/ytools
+#  Copyright (c) Jakob Stemberger <yaccob@gmx.net>
+#  Apache 2.0 Licensed
+#
 
 # stdlib
+import pathlib
 from typing import Any, Dict, Iterable, List, NoReturn, Optional, Union
 
 # 3rd party
+import jsonschema  # type: ignore
+from domdf_python_tools.typing import PathLike
 from domdf_python_tools.utils import strtobool
+from ruamel.yaml import safe_load, safe_load_all
 from typing_inspect import get_origin, is_literal_type  # type: ignore
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
 from configconfig.utils import check_union, get_literal_values, optional_getter
 
-__all__ = ["Validator"]
+__all__ = ["Validator", "validate_files"]
 
 RawConfigVars = Dict[str, Any]
 
@@ -269,3 +277,31 @@ class Validator:
 		print(self.config_var.dtype)
 		print(get_origin(self.config_var.dtype))
 		raise NotImplementedError
+
+
+def validate_files(
+		schemafile: PathLike,
+		*datafiles: PathLike,
+		encoding: str = "utf-8",
+		) -> None:
+	r"""
+	Validate the given datafiles against the given schema.
+
+	:param schemafile: The ``json`` or ``yaml`` formatted schema to validate with
+	:param \*datafiles: The ``json`` or ``yaml`` files to validate
+	:param encoding: Encoding to open the files with.
+
+	.. versionadded:: 0.4.0
+	"""
+
+	schemafile = pathlib.Path(schemafile)
+
+	schema = safe_load(schemafile.read_text(encoding=encoding))
+
+	for filename in datafiles:
+		for document in safe_load_all(pathlib.Path(filename).read_text(encoding=encoding)):
+			try:
+				jsonschema.validate(document, schema, format_checker=jsonschema.FormatChecker())
+			except jsonschema.exceptions.ValidationError as e:
+				e.filename = str(filename)
+				raise e

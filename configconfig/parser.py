@@ -34,11 +34,11 @@ from typing import Any, List, Mapping, MutableMapping
 import yaml
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
-from ytools import validate
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
 from configconfig.utils import make_schema
+from configconfig.validator import validate_files
 
 __all__ = ["Parser"]
 
@@ -99,7 +99,7 @@ class Parser:
 			schema = make_schema(*self.config_vars)
 			schema["additionalProperties"] = self.allow_unknown_keys
 			schema_file.dump_json(schema)
-			validate(str(schema_file), [filename])
+			validate_files(schema_file, filename)
 
 		parsed_config_vars: MutableMapping[str, Any] = {}
 
