@@ -287,8 +287,8 @@ def validate_files(
 	r"""
 	Validate the given datafiles against the given schema.
 
-	:param schemafile: The ``json`` or ``yaml`` formatted schema to validate with
-	:param \*datafiles: The ``json`` or ``yaml`` files to validate
+	:param schemafile: The ``json`` or ``yaml`` formatted schema to validate with.
+	:param \*datafiles: The ``json`` or ``yaml`` files to validate.
 	:param encoding: Encoding to open the files with.
 
 	.. versionadded:: 0.4.0
