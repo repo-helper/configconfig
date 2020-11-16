@@ -93,7 +93,7 @@ __all__ = [
 		]
 
 #: A literal ``TAB`` (``\t``) character for use in f-strings.
-tab = "\t"
+tab = '\t'
 
 if sys.version_info < (3, 7):
 	UnionType = Any

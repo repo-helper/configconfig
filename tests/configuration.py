@@ -260,9 +260,9 @@ class import_name(ConfigVar):  # noqa
 
 	@staticmethod
 	def validator(name: str) -> str:
-		name = name.replace("-", "_")  # replace hyphens with underscores
-		name = name.replace("/", ".")
-		for part in name.split("."):
+		name = name.replace('-', '_')  # replace hyphens with underscores
+		name = name.replace('/', '.')
+		for part in name.split('.'):
 			if not part.isidentifier():
 				raise ValueError(
 						"""\
