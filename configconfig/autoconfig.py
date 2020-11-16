@@ -144,7 +144,7 @@ class AutoConfigDirective(SphinxDirective):
 			return node_list
 
 		else:
-			module_name, class_ = config_var.rsplit(".", 1)
+			module_name, class_ = config_var.rsplit('.', 1)
 			var_obj = import_object(module_name, [class_])[3]
 			if not issubclass(var_obj, ConfigVar):
 				warnings.warn("'autoconfig' can only be used with 'ConfigVar' subclasses.")
@@ -164,8 +164,8 @@ class AutoConfigDirective(SphinxDirective):
 		targetid = f'autoconfig-{self.env.new_serialno("autoconfig"):d}'
 		targetnode = nodes.section(ids=[targetid])
 
-		content = docstring.replace("\t", "    ")
-		view = StringList(content.split("\n"))
+		content = docstring.replace('\t', "    ")
+		view = StringList(content.split('\n'))
 		config_node = nodes.paragraph(rawsource=content)
 		self.state.nested_parse(view, self.content_offset, config_node)
 
@@ -183,7 +183,7 @@ def parse_conf_node(env: BuildEnvironment, text: str, node: addnodes.desc_signat
 	:param node: The docutils node class.
 	"""
 
-	args = text.split("^")
+	args = text.split('^')
 	name = args[0].strip()
 
 	node += addnodes.literal_strong(name, name)

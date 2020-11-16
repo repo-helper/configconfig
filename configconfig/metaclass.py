@@ -102,7 +102,7 @@ class ConfigVarMeta(type):
 			schema["required"].append(cls.__name__)
 
 		for line in (cls.__doc__ or '').split("\n\n"):
-			line = " ".join([p.strip() for p in line.split("\n") if p.strip()])
+			line = ' '.join([p.strip() for p in line.split('\n') if p.strip()])
 			if line:
 				schema["properties"][cls.__name__]["description"] = line
 				break

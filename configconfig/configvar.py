@@ -164,8 +164,8 @@ class ConfigVar(metaclass=ConfigVarMeta):
 		docstring = cls.__doc__ or ''
 		docstring = (indent(dedent(docstring), tab))
 
-		if not docstring.startswith("\n"):
-			docstring = "\n" + docstring
+		if not docstring.startswith('\n'):
+			docstring = '\n' + docstring
 
 		buf = StringList()
 		buf.indent_type = "    "
