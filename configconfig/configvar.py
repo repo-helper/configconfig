@@ -98,7 +98,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 	default: Any
 	"""
-	Flag to indicate whether the configuration value is required. Defaults to ``''`` if unset.
+	The default value of the configuration value if it is optional. Defaults to ``''`` if unset.
 	"""
 
 	category: str

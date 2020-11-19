@@ -38,7 +38,7 @@ from abc import ABC
 from typing import Any, Dict, List, Type
 
 # 3rd party
-import pytest
+import pytest  # nodep
 
 # this package
 from configconfig.configvar import ConfigVar

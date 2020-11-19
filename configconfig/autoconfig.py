@@ -72,15 +72,15 @@ import warnings
 from typing import Any, Dict, Sequence, Type
 
 # 3rd party
-from docutils import nodes
-from docutils.parsers.rst.directives import unchanged
-from docutils.statemachine import StringList
-from sphinx import addnodes
-from sphinx.application import Sphinx
-from sphinx.environment import BuildEnvironment
-from sphinx.ext.autodoc.importer import import_module, import_object
-from sphinx.util.docutils import SphinxDirective
-from sphinx_toolbox.utils import Purger
+from docutils import nodes  # nodep
+from docutils.parsers.rst.directives import unchanged  # nodep
+from docutils.statemachine import StringList  # nodep
+from sphinx import addnodes  # nodep
+from sphinx.application import Sphinx  # nodep
+from sphinx.environment import BuildEnvironment  # nodep
+from sphinx.ext.autodoc.importer import import_module, import_object  # nodep
+from sphinx.util.docutils import SphinxDirective  # nodep
+from sphinx_toolbox.utils import Purger  # nodep
 
 # this package
 from configconfig import __version__

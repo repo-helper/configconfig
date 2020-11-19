@@ -31,9 +31,9 @@ import tempfile
 from typing import Any, List, Mapping, MutableMapping
 
 # 3rd party
-import yaml
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
+from ruamel.yaml import safe_load
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
@@ -104,7 +104,7 @@ class Parser:
 		parsed_config_vars: MutableMapping[str, Any] = {}
 
 		with filename.open() as file:
-			raw_config_vars: Mapping[str, Any] = yaml.safe_load(file)
+			raw_config_vars: Mapping[str, Any] = safe_load(file)
 
 		for var in self.config_vars:
 			parsed_config_vars[var.__name__] = getattr(self, f"visit_{var.__name__}", var.get)(raw_config_vars)
