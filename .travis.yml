@@ -10,6 +10,7 @@ python:
   - '3.7'
   - '3.8'
   - '3.9'
+  - '3.10-dev'
 
 arch:
   - amd64
@@ -34,12 +35,16 @@ stages:
 jobs:
   allow_failures:
     - arch: arm64
+    - python: ['3.10-dev']
+
   exclude:
     - python: '3.7'
       arch: arm64
     - python: '3.8'
       arch: arm64
     - python: '3.9'
+      arch: arm64
+    - python: '3.10-dev'
       arch: arm64
 
   include:
