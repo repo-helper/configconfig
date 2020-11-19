@@ -90,6 +90,7 @@ __all__ = [
 		"check_union",
 		"get_json_type",
 		"tab",
+		"RawConfigVarsType",
 		]
 
 #: A literal ``TAB`` (``\t``) character for use in f-strings.
@@ -301,3 +302,6 @@ def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore
 		return literal.__values__
 	else:
 		return literal.__args__
+
+
+RawConfigVarsType = Dict[str, Any]

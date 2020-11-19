@@ -43,11 +43,9 @@ from typing_inspect import get_origin, is_literal_type  # type: ignore
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
-from configconfig.utils import check_union, get_literal_values, optional_getter
+from configconfig.utils import RawConfigVarsType, check_union, get_literal_values, optional_getter
 
 __all__ = ["Validator", "validate_files"]
-
-RawConfigVars = Dict[str, Any]
 
 
 class Validator:
@@ -65,7 +63,7 @@ class Validator:
 			bool: "bool",
 			}
 
-	def validate(self, raw_config_vars: Optional[RawConfigVars] = None) -> Any:
+	def validate(self, raw_config_vars: Optional[RawConfigVarsType] = None) -> Any:
 		"""
 		Validate the configuration value.
 
@@ -98,7 +96,7 @@ class Validator:
 		else:
 			self.unknown_type()
 
-	def _visit_str_number(self, raw_config_vars: RawConfigVars) -> Union[str, int, float]:
+	def _visit_str_number(self, raw_config_vars: RawConfigVarsType) -> Union[str, int, float]:
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 
 		if not isinstance(obj, self.config_var.dtype):
@@ -106,7 +104,7 @@ class Validator:
 
 		return obj
 
-	def visit_str(self, raw_config_vars: RawConfigVars) -> str:
+	def visit_str(self, raw_config_vars: RawConfigVarsType) -> str:
 		"""
 		Used to validate and convert :class:`str` values.
 
@@ -115,7 +113,7 @@ class Validator:
 
 		return self.config_var.rtype(self._visit_str_number(raw_config_vars))
 
-	def visit_int(self, raw_config_vars: RawConfigVars) -> int:
+	def visit_int(self, raw_config_vars: RawConfigVarsType) -> int:
 		"""
 		Used to validate and convert :class:`int` values.
 
@@ -124,7 +122,7 @@ class Validator:
 
 		return self.config_var.rtype(self._visit_str_number(raw_config_vars))
 
-	def visit_float(self, raw_config_vars: RawConfigVars) -> float:
+	def visit_float(self, raw_config_vars: RawConfigVarsType) -> float:
 		"""
 		Used to validate and convert :class:`float` values.
 
@@ -133,7 +131,7 @@ class Validator:
 
 		return self.config_var.rtype(self._visit_str_number(raw_config_vars))
 
-	def visit_bool(self, raw_config_vars: RawConfigVars) -> bool:
+	def visit_bool(self, raw_config_vars: RawConfigVarsType) -> bool:
 		"""
 		Used to validate and convert :class:`bool` values.
 
@@ -147,7 +145,7 @@ class Validator:
 
 		return self.config_var.rtype(strtobool(obj))
 
-	def visit_list(self, raw_config_vars: RawConfigVars) -> List:
+	def visit_list(self, raw_config_vars: RawConfigVarsType) -> List:
 		"""
 		Used to validate and convert :class:`list` values.
 
@@ -199,7 +197,7 @@ class Validator:
 					f"Values in '{self.config_var.__name__}' must be {self.config_var.rtype.__args__[0]}"
 					) from None
 
-	def visit_dict(self, raw_config_vars: RawConfigVars) -> Dict:
+	def visit_dict(self, raw_config_vars: RawConfigVarsType) -> Dict:
 		"""
 		Used to validate and convert :class:`dict` values.
 
@@ -233,7 +231,7 @@ class Validator:
 		else:
 			self.unknown_type()
 
-	def visit_union(self, raw_config_vars: RawConfigVars) -> Any:
+	def visit_union(self, raw_config_vars: RawConfigVarsType) -> Any:
 		"""
 		Used to validate and convert :class:`typing.Union` values.
 
@@ -251,7 +249,7 @@ class Validator:
 		except ValueError:
 			raise ValueError(f"'{self.config_var.__name__}' must be {self.config_var.rtype.__args__[0]}") from None
 
-	def visit_literal(self, raw_config_vars: RawConfigVars) -> Any:
+	def visit_literal(self, raw_config_vars: RawConfigVarsType) -> Any:
 		"""
 		Used to validate and convert :class:`typing.Literal` values.
 

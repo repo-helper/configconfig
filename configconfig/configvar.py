@@ -28,7 +28,7 @@ Base class for ``YAML`` configuration values.
 
 # stdlib
 from textwrap import dedent, indent
-from typing import Any, Callable, Dict, Optional, Type
+from typing import Any, Callable, Optional, Type, Union
 
 # 3rd party
 from domdf_python_tools.stringlist import StringList
@@ -36,7 +36,7 @@ from typing_inspect import is_literal_type  # type: ignore
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
-from configconfig.utils import get_yaml_type, tab
+from configconfig.utils import RawConfigVarsType, get_yaml_type, tab
 from configconfig.validator import Validator
 
 __all__ = ["ConfigVar"]
@@ -96,7 +96,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	Flag to indicate whether the configuration value is required. Default :py:obj:`False`.
 	"""
 
-	default: Any
+	default: Union[Callable[[RawConfigVarsType], Any], Any]
 	"""
 	The default value of the configuration value if it is optional. Defaults to ``''`` if unset.
 
@@ -122,12 +122,12 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 		return value
 
-	def __new__(cls, raw_config_vars: Dict[str, Any]) -> Any:
+	def __new__(cls, raw_config_vars: RawConfigVarsType) -> Any:
 		# Exists purely so mypy knows about the signature
 		return cls.get(raw_config_vars)  # pragma: no cover
 
 	@classmethod
-	def get(cls, raw_config_vars: Optional[Dict[str, Any]] = None) -> Any:
+	def get(cls, raw_config_vars: Optional[RawConfigVarsType] = None) -> Any:
 		"""
 		Returns the value of this :class:`~configconfig.configvar.ConfigVar`.
 
@@ -139,7 +139,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 		return cls.validator(cls.validate(raw_config_vars))
 
 	@classmethod
-	def validate(cls, raw_config_vars: Optional[Dict[str, Any]] = None) -> Any:
+	def validate(cls, raw_config_vars: Optional[RawConfigVarsType] = None) -> Any:
 		"""
 		Validate the value obtained from the ``YAML`` file and coerce into the appropriate return type.
 
