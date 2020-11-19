@@ -99,6 +99,8 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	default: Any
 	"""
 	The default value of the configuration value if it is optional. Defaults to ``''`` if unset.
+
+	May also be set to a callable which returns a dynamic or mutable default value.
 	"""
 
 	category: str
