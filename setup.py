@@ -13,7 +13,7 @@ sys.path.append('.')
 from __pkginfo__ import *  # pylint: disable=wildcard-import
 
 setup(
-		description='Load and validate YAML configuration files.',
+		description="Load and validate YAML configuration files.",
 		extras_require=extras_require,
 		install_requires=install_requires,
 		py_modules=[],

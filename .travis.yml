@@ -1,6 +1,7 @@
 # This file is managed by 'repo_helper'. Don't edit it directly.
 ---
 
+os: linux
 language: python
 dist: focal
 cache: pip
@@ -33,7 +34,6 @@ stages:
 jobs:
   allow_failures:
     - arch: arm64
-
   exclude:
     - python: '3.7'
       arch: arm64
@@ -55,7 +55,7 @@ jobs:
           tags: true
           repo: domdfcoding/configconfig
         provider: pypi
-        user: "DomDF"
+        username: "DomDF"
         password:
           secure: eQ/4Af238K5gyM8yNA0ZcZWC6zrn5wkZzNyiucLILANEtAdWmmAegp2sjQxgW6bqgO8sBnABeZHaaPhDD5iipFI3R28ah6fxixa7U/5xtozgt3ddj7QP+R8Z4Jt9jttc8aSQYSb6ydY964jpkmwWyG3gshtMMRGJZnI5h8r7I4zwUNFuKTbziGzCgBtic8xMKDBgBqgAGnLQOpZEC/Sr3xEtYBUdAiUlIE9Rf3EFi4jnudgJp9sGFFqr3s+eyKZmxnnSInnW23TFSvLkON+w2QjRRb8QXTRk5el0Hp5UT0BADZ8rQrg6qP1LnEIph6VjrdTCNGa92FAmrlxQE+op+oQ9Y1zT2aGOuv4fOlnie09FuzWt62mjnUmmDJGxV7gmwu2T0aJUBWj5g8vqqTcwKBoxPjeHN2aC2V7akupMG75FG2Xba54/9QPrliHMcjGakQddcG9RMe1nwY/M8JhW9ueXJtJSuWxKXjUJ7qUXYUrF0te16t/fkOvqbuWwFK2NCzcBacOxA9yZg9gOysnj9qWCYEa7lA7trw8tnHjNwRheVZgKuchx9WI4SF++EUoqaCintkxMBkYnzoViSzTy1Y3NFrgVPGigCCJ7LxwOcE54G5kb5lbPHmsv82P5+49MTfajMkxhKGZgnyY1sa5yveOKhAFJGKButLfU68u9bbo=
         distributions: "sdist bdist_wheel"
