@@ -110,14 +110,14 @@ class ConfigVarMeta(type):
 		return schema
 
 	@property
-	def schema_entry(cls) -> Dict[str, Any]:
+	def schema_entry(cls) -> Dict[str, Any]:  # noqa: D102
 		return cls.get_schema_entry()
 
-	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore
+	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore  # noqa: D102
 		return cls.get(raw_config_vars)
 
 	@abstractmethod
-	def get(cls, raw_config_vars: Mapping[str, Any]):  # pragma: no cover
+	def get(cls, raw_config_vars: Mapping[str, Any]):  # pragma: no cover  # noqa: D102
 		return NotImplemented
 
 	def __repr__(self) -> str:

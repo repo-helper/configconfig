@@ -66,7 +66,9 @@ else:  # pragma: no cover (>=py38)
 		"""Get type arguments with all substitutions performed.
 
 		For unions, basic simplifications used by Union constructor are performed.
+
 		Examples::
+
 			get_args(Dict[str, int]) == (str, int)
 			get_args(int) == ()
 			get_args(Union[int, Union[T, int], str][int]) == (int, str)
@@ -234,10 +236,10 @@ def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:
 
 
 def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
-	"""
+	r"""
 	Get the type for the JSON schema that corresponds to the given Python type.
 
-	:param type_:
+	:param type\_:
 	"""
 
 	if type_ in json_type_lookup:

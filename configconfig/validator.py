@@ -32,13 +32,14 @@ Validate values obtained from the ``YAML`` file and coerce into the appropriate 
 
 # stdlib
 import pathlib
-from typing import Any, Dict, Iterable, List, NoReturn, Optional, Union
+from typing import Any, Dict, Iterable, List, Optional, Union
 
 # 3rd party
 import jsonschema  # type: ignore
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.utils import strtobool
 from ruamel.yaml import safe_load, safe_load_all
+from typing_extensions import NoReturn
 from typing_inspect import get_origin, is_literal_type  # type: ignore
 
 # this package

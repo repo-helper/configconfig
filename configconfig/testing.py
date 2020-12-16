@@ -80,7 +80,7 @@ class NotIntTest(ConfigVarTest):
 	"""  # noqa: D400
 
 	def test_error_int(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: 1234})
 
 
@@ -91,7 +91,7 @@ class NotBoolTest(ConfigVarTest):
 	"""  # noqa: D400
 
 	def test_error_bool(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: True})
 
 
@@ -102,7 +102,7 @@ class NotStrTest(ConfigVarTest):
 	"""  # noqa: D400
 
 	def test_error_str(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: "a string"})
 
 
@@ -131,7 +131,7 @@ class ListTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 		assert self.config_var.get({}) == self.default_value
 
 	def test_error_list_int(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
 
@@ -163,7 +163,7 @@ class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
 	def test_error_list_str(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: test_list_str})
 
 
@@ -233,7 +233,7 @@ class BoolTrueTest(ConfigVarTest):
 
 	def test_errors(self):  # noqa: D102
 		for wrong_value in self.wrong_values:
-			with pytest.raises(ValueError):
+			with pytest.raises(ValueError):  # noqa: PT011
 				self.config_var.get(wrong_value)
 
 
@@ -249,7 +249,7 @@ class BoolFalseTest(BoolTrueTest):
 	"""
 
 	@property
-	def true_values(self) -> List[Dict[str, Any]]:
+	def true_values(self) -> List[Dict[str, Any]]:  # noqa: D102
 		return [
 				{self.config_var.__name__: True},
 				{self.config_var.__name__: 1},
@@ -259,7 +259,7 @@ class BoolFalseTest(BoolTrueTest):
 				]
 
 	@property
-	def false_values(self) -> List[Dict[str, Any]]:
+	def false_values(self) -> List[Dict[str, Any]]:  # noqa: D102
 		return [
 				{self.config_var.__name__: 0},
 				{self.config_var.__name__: False},
@@ -281,7 +281,7 @@ class RequiredStringTest(ConfigVarTest):
 	test_value: str
 
 	def test_empty_get(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get()
 
 	def test_success(self):  # noqa: D102
@@ -302,7 +302,7 @@ class RequiredStringTest(ConfigVarTest):
 
 	def test_errors(self):  # noqa: D102
 		for wrong_value in self.wrong_values:
-			with pytest.raises(ValueError):
+			with pytest.raises(ValueError):  # noqa: PT011
 				self.config_var.get(wrong_value)
 
 
@@ -340,7 +340,7 @@ class OptionalStringTest(RequiredStringTest):
 
 	def test_errors(self):  # noqa: D102
 		for wrong_value in self.wrong_values:
-			with pytest.raises(ValueError):
+			with pytest.raises(ValueError):  # noqa: PT011
 				self.config_var.get(wrong_value)
 
 
@@ -361,7 +361,7 @@ class EnumTest(RequiredStringTest):
 
 	def test_non_enum(self):  # noqa: D102
 		for non_enum in self.non_enum_values:
-			with pytest.raises(ValueError):
+			with pytest.raises(ValueError):  # noqa: PT011
 				self.config_var.get({self.config_var.__name__: non_enum})
 
 	def test_errors(self):  # noqa: D102
@@ -372,7 +372,7 @@ class EnumTest(RequiredStringTest):
 				{self.config_var.__name__: test_list_str},
 				]
 		for wrong_value in wrong_values:
-			with pytest.raises(ValueError):
+			with pytest.raises(ValueError):  # noqa: PT011
 				self.config_var.get(wrong_value)
 
 
@@ -401,5 +401,5 @@ class DictTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 		assert self.config_var.get({}) == self.default_value
 
 	def test_error_list_int(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: test_list_int})

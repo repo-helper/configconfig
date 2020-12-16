@@ -43,7 +43,7 @@ __all__ = ["ConfigVar"]
 
 
 class ConfigVar(metaclass=ConfigVarMeta):
-	"""
+	r"""
 	Base class for ``YAML`` configuration values.
 
 	The class docstring should be the description of the config var, with an example,
@@ -122,7 +122,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 		return value
 
-	def __new__(cls, raw_config_vars: RawConfigVarsType) -> Any:
+	def __new__(cls, raw_config_vars: RawConfigVarsType) -> Any:  # noqa: D102
 		# Exists purely so mypy knows about the signature
 		return cls.get(raw_config_vars)  # pragma: no cover
 
