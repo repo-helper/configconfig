@@ -159,7 +159,7 @@ class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 		assert self.config_var.get({}) == self.default_value
 
 	def test_error_list_int(self):  # noqa: D102
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError, match="'.*' must be a <class 'str'>"):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
 	def test_error_list_str(self):  # noqa: D102
