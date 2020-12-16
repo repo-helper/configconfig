@@ -467,7 +467,7 @@ class Test_platforms:
 		assert self.config_var.get({"platforms": ["macOS", "Windows"]}) == ["macOS", "Windows"]
 		assert self.config_var.get({"platforms": ["Windows", "macOS", "Linux"]}) == ["Windows", "macOS", "Linux"]
 
-	must_be_list = r"'platforms' must be a List of typing_extensions.Literal\['Windows', 'macOS', 'Linux']"
+	must_be_list = r"'platforms' must be a List of typing.*\.Literal\['Windows', 'macOS', 'Linux']"
 
 	@pytest.mark.parametrize(
 			"wrong_value, match",
