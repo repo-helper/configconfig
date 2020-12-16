@@ -17,9 +17,11 @@ configconfig
 	* - Docs
 	  - |docs| |docs_check|
 	* - Tests
-	  - |travis| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
+	  - |actions_linux| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
 	* - PyPI
 	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+	* - Anaconda
+	  - |conda-version| |conda-platform|
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained|
 	* - Other
@@ -33,16 +35,16 @@ configconfig
 	:workflow: Docs Check
 	:alt: Docs Check Status
 
-.. |travis| actions-shield::
-	:workflow: Linux Tests
+.. |actions_linux| actions-shield::
+	:workflow: Linux
 	:alt: Linux Test Status
 
 .. |actions_windows| actions-shield::
-	:workflow: Windows Tests
+	:workflow: Windows
 	:alt: Windows Test Status
 
 .. |actions_macos| actions-shield::
-	:workflow: macOS Tests
+	:workflow: macOS
 	:alt: macOS Test Status
 
 .. |requires| requires-io-shield::
@@ -73,6 +75,14 @@ configconfig
 	:project: configconfig
 	:wheel:
 	:alt: PyPI - Wheel
+
+.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/configconfig?logo=anaconda
+	:target: https://anaconda.org/domdfcoding/configconfig
+	:alt: Conda - Package Version
+
+.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/configconfig?label=conda%7Cplatform
+	:target: https://anaconda.org/domdfcoding/configconfig
+	:alt: Conda - Platform
 
 .. |license| github-shield::
 	:license:
@@ -109,6 +119,8 @@ Installation
 .. installation:: configconfig
 	:pypi:
 	:github:
+	:anaconda:
+	:conda-channels: domdfcoding, conda-forge
 
 .. end installation
 

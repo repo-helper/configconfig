@@ -1,6 +1,6 @@
 # This file is managed by 'repo_helper'. Don't edit it directly.
 ---
-name: Linux Tests
+name: Linux
 
 on:
   push:
@@ -9,45 +9,53 @@ on:
 
 jobs:
   tests:
-    name: "Python ${{ matrix.python-version }}"
-    runs-on: "ubuntu-18.04"
+    name: "Python ${{ matrix.config.python-version }}"
+    runs-on: "ubuntu-20.04"
+    continue-on-error: ${{ matrix.config.experimental }}
     env:
-      USING_COVERAGE: '3.6,3.7,3.8,3.9'
+      USING_COVERAGE: '3.6,3.7,3.8,3.9,3.10.0-alpha.3'
 
     strategy:
       fail-fast: False
       matrix:
-        python-version: ["3.6","3.7","3.8","3.9"]
+        config:
+          - {python-version: "3.6", testenvs: "py36,build", experimental: False}
+          - {python-version: "3.7", testenvs: "py37,build", experimental: False}
+          - {python-version: "3.8", testenvs: "py38,build", experimental: False}
+          - {python-version: "3.9", testenvs: "py39,build", experimental: False}
+          - {python-version: "3.10.0-alpha.3", testenvs: "py310-dev,build", experimental: True}
 
     steps:
       - name: Checkout 🛎️
         uses: "actions/checkout@v2"
+
       - name: Setup Python 🐍
         uses: "actions/setup-python@v2"
         with:
-          python-version: "${{ matrix.python-version }}"
+          python-version: "${{ matrix.config.python-version }}"
+
       - name: Install dependencies 🔧
         run: |
           python -VV
           python -m site
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install --upgrade tox tox-gh-actions virtualenv
+          python -m pip install --upgrade tox virtualenv
           python -m pip install --upgrade coverage_pyver_pragma
 
-      - name: "Run Tests for Python ${{ matrix.python-version }}"
-        run: "python -m tox"
+      - name: "Run Tests for Python ${{ matrix.config.python-version }}"
+        run: "python -m tox -e ${{ matrix.config.testenvs }}"
 
 
       - name: "Upload Coverage"
         uses: actions/upload-artifact@v2
         with:
-          name: "coverage-${{ matrix.python-version }}"
+          name: "coverage-${{ matrix.config.python-version }}"
           path: .coverage
 
 
   Coverage:
     needs: tests
-    runs-on: "ubuntu-18.04"
+    runs-on: "ubuntu-20.04"
     steps:
       - name: Checkout 🛎️
         uses: "actions/checkout@v2"
@@ -91,7 +99,7 @@ jobs:
   Deploy:
     needs: tests
 
-    runs-on: "ubuntu-18.04"
+    runs-on: "ubuntu-20.04"
     steps:
       - name: Checkout 🛎️
         uses: "actions/checkout@v2"
@@ -118,3 +126,38 @@ jobs:
           user: __token__
           password: ${{ secrets.PYPI_TOKEN }}
           skip_existing: true
+
+
+
+  Conda:
+    needs: deploy
+    runs-on: "ubuntu-20.04"
+    if: startsWith(github.ref, 'refs/tags/') || ${{ startsWith(github.event.head_commit.message, 'Bump version') != true }}
+    steps:
+      - name: Checkout 🛎️
+        uses: "actions/checkout@v2"
+
+      - name: Setup Python 🐍
+        uses: "actions/setup-python@v2"
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies 🔧
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade repo_helper
+
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+          bash miniconda.sh -b -p $HOME/miniconda
+
+      - name: Build Conda 📦
+        run: |
+          chmod +x .github/actions_build_conda.sh
+          bash .github/actions_build_conda.sh
+
+      - name: Deploy Conda 🚀
+        run: |
+          chmod +x .github/actions_deploy_conda.sh
+          bash .github/actions_deploy_conda.sh
+        env:
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}

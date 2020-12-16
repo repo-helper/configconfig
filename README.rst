@@ -18,32 +18,34 @@ configconfig
 	* - Docs
 	  - |docs| |docs_check|
 	* - Tests
-	  - |travis| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
+	  - |actions_linux| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
 	* - PyPI
 	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+	* - Anaconda
+	  - |conda-version| |conda-platform|
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained|
 	* - Other
 	  - |license| |language| |requires| |pre_commit|
 
 .. |docs| image:: https://img.shields.io/readthedocs/configconfig/latest?logo=read-the-docs
-	:target: https://configconfig.readthedocs.io/en/latest/?badge=latest
+	:target: https://configconfig.readthedocs.io/en/latest
 	:alt: Documentation Build Status
 
 .. |docs_check| image:: https://github.com/domdfcoding/configconfig/workflows/Docs%20Check/badge.svg
 	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Docs+Check%22
 	:alt: Docs Check Status
 
-.. |travis| image:: https://github.com/domdfcoding/configconfig/workflows/Linux%20Tests/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Linux+Tests%22
+.. |actions_linux| image:: https://github.com/domdfcoding/configconfig/workflows/Linux/badge.svg
+	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Linux%22
 	:alt: Linux Test Status
 
-.. |actions_windows| image:: https://github.com/domdfcoding/configconfig/workflows/Windows%20Tests/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Windows+Tests%22
+.. |actions_windows| image:: https://github.com/domdfcoding/configconfig/workflows/Windows/badge.svg
+	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Windows%22
 	:alt: Windows Test Status
 
-.. |actions_macos| image:: https://github.com/domdfcoding/configconfig/workflows/macOS%20Tests/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22macOS+Tests%22
+.. |actions_macos| image:: https://github.com/domdfcoding/configconfig/workflows/macOS/badge.svg
+	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22macOS%22
 	:alt: macOS Test Status
 
 .. |requires| image:: https://requires.io/github/domdfcoding/configconfig/requirements.svg?branch=master
@@ -73,6 +75,14 @@ configconfig
 .. |wheel| image:: https://img.shields.io/pypi/wheel/configconfig
 	:target: https://pypi.org/project/configconfig/
 	:alt: PyPI - Wheel
+
+.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/configconfig?logo=anaconda
+	:target: https://anaconda.org/domdfcoding/configconfig
+	:alt: Conda - Package Version
+
+.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/configconfig?label=conda%7Cplatform
+	:target: https://anaconda.org/domdfcoding/configconfig
+	:alt: Conda - Platform
 
 .. |license| image:: https://img.shields.io/github/license/domdfcoding/configconfig
 	:target: https://github.com/domdfcoding/configconfig/blob/master/LICENSE
@@ -109,12 +119,27 @@ Installation
 
 .. start installation
 
-``configconfig`` can be installed from PyPI.
+``configconfig`` can be installed from PyPI or Anaconda.
 
 To install with ``pip``:
 
 .. code-block:: bash
 
 	$ python -m pip install configconfig
+
+To install with ``conda``:
+
+	* First add the required channels
+
+	.. code-block:: bash
+
+		$ conda config --add channels http://conda.anaconda.org/domdfcoding
+		$ conda config --add channels http://conda.anaconda.org/conda-forge
+
+	* Then install
+
+	.. code-block:: bash
+
+		$ conda install configconfig
 
 .. end installation
