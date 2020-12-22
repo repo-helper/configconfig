@@ -53,7 +53,7 @@ class ConfigVarMeta(type):
 	category: str
 	__name__: str
 
-	def __new__(cls, name: str, bases, dct: Dict):
+	def __new__(cls, name: str, bases, dct: Dict):  # noqa: D102
 		x = cast("ConfigVar", super().__new__(cls, name, bases, dct))
 
 		def get(name, default):

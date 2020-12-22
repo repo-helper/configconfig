@@ -108,11 +108,13 @@ else:
 
 def optional_getter(raw_config_vars: Dict[str, Any], cls: "ConfigVarMeta", required: bool) -> Any:
 	"""
+	Returns either the configuration value, the default,
+	or raises an error if the value is required but wasn't supplied.
 
 	:param raw_config_vars:
 	:param cls:
 	:param required:
-	"""
+	"""  # noqa: D400
 
 	if required:
 		try:

@@ -38,3 +38,6 @@ classifiers:
 keywords:
  - configuration
  - yaml
+
+tox_unmanaged:
+ - flake8
