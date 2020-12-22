@@ -31,7 +31,7 @@ __version__ = "0.4.0"
 repo_root = pathlib.Path(__file__).parent
 install_requires = (repo_root / "requirements.txt").read_text(encoding="utf-8").split('\n')
 extras_require = {
-		"sphinx": ["sphinx", "sphinx-toolbox", "docutils"],
+		"sphinx": ["sphinx<3.4.0,>=3.0.3", "sphinx-toolbox", "docutils"],
 		"testing": ["pytest"],
-		"all": ["docutils", "pytest", "sphinx", "sphinx-toolbox"]
+		"all": ["docutils", "pytest", "sphinx-toolbox", "sphinx<3.4.0,>=3.0.3"]
 		}

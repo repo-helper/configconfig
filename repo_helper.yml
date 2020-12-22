@@ -22,7 +22,7 @@ python_versions:
 
 extras_require:
  sphinx:
-  - sphinx
+  - sphinx<3.4.0,>=3.0.3
   - sphinx-toolbox
   - docutils
  testing:
