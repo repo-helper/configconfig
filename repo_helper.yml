@@ -10,7 +10,6 @@ license: 'MIT'
 short_desc: 'Load and validate YAML configuration files.'
 
 conda_channels:
- - domdfcoding
  - conda-forge
 
 python_versions:
@@ -38,6 +37,3 @@ classifiers:
 keywords:
  - configuration
  - yaml
-
-tox_unmanaged:
- - flake8
