@@ -168,8 +168,10 @@ def test_copyright_years():
 @pytest.mark.parametrize(
 		"wrong_value, match",
 		[
-				({"copyright_years": test_list_int}, "'copyright_years' must be one of <class 'str'>"),
-				({"copyright_years": test_list_str}, "'copyright_years' must be one of <class 'str'>"),
+				({"copyright_years": test_list_int},
+					r"'copyright_years' must be one of \(<class 'str'>, <class 'int'>\), not <class 'list'>"),
+				({"copyright_years": test_list_str},
+					r"'copyright_years' must be one of \(<class 'str'>, <class 'int'>\), not <class 'list'>"),
 				({"username": "domdfcoding"}, "A value for 'copyright_years' is required."),
 				({}, "A value for 'copyright_years' is required."),
 				]
@@ -496,6 +498,13 @@ class Test_python_deploy_version(OptionalStringTest):
 	config_var = python_deploy_version
 	test_value = "3.8"
 	default_value = "3.6"
+
+	@property
+	def wrong_values(self) -> List[Dict[str, Any]]:  # noqa: D102
+		return [
+				{self.config_var.__name__: test_list_int},
+				{self.config_var.__name__: test_list_str},
+				]
 
 	def test_success(self):
 		assert self.config_var.get({self.config_var.__name__: 3.8}) == "3.8"

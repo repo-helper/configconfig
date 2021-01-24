@@ -179,7 +179,7 @@ class Validator:
 				# 	obj = obj.lower()
 				if obj not in get_literal_values(self.config_var.dtype.__args__[0]):
 					raise ValueError(
-							f"Elements of '{self.config_var.__name__}' must be"
+							f"Elements of '{self.config_var.__name__}' must be "
 							f"one of {get_literal_values(self.config_var.dtype.__args__[0])}"
 							) from None
 		else:

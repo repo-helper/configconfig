@@ -130,10 +130,6 @@ class ListTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_error_list_int(self):  # noqa: D102
-		with pytest.raises(ValueError):  # noqa: PT011
-			self.config_var.get({self.config_var.__name__: test_list_int})
-
 
 class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 	"""
