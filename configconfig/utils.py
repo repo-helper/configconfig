@@ -234,7 +234,12 @@ def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:
 	:type dtype: :class:`~typing.Union`\, :class:`~typing.List`\, etc.
 	"""
 
-	return isinstance(obj, dtype.__args__)
+	args = dtype.__args__
+
+	if float in args and int not in args:
+		args = (*dtype.__args__, int)
+
+	return isinstance(obj, args)
 
 
 def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
