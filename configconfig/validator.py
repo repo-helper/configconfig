@@ -142,7 +142,10 @@ class Validator:
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 
 		if not isinstance(obj, (int, bool, str)):
-			raise ValueError(f"'{self.config_var.__name__}' must be one of {(int, bool, str)}") from None
+			raise ValueError(
+					f"'{self.config_var.__name__}' must be one of {(int, bool, str)}, "
+					f"not {type(obj)}"
+					) from None
 
 		return self.config_var.rtype(strtobool(obj))
 
@@ -166,7 +169,8 @@ class Validator:
 			for obj in data:
 				if not check_union(obj, self.config_var.dtype.__args__[0]):
 					raise ValueError(
-							f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
+							f"'{self.config_var.__name__}' must be a "
+							f"List of {self.config_var.dtype.__args__[0]}"
 							) from None
 
 		elif is_literal_type(self.config_var.dtype.__args__[0]):
@@ -175,7 +179,8 @@ class Validator:
 				# 	obj = obj.lower()
 				if obj not in get_literal_values(self.config_var.dtype.__args__[0]):
 					raise ValueError(
-							f"Elements of '{self.config_var.__name__}' must be one of {get_literal_values(self.config_var.dtype.__args__[0])}"
+							f"Elements of '{self.config_var.__name__}' must be"
+							f"one of {get_literal_values(self.config_var.dtype.__args__[0])}"
 							) from None
 		else:
 			for obj in data:
@@ -242,13 +247,17 @@ class Validator:
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 		if not check_union(obj, self.config_var.dtype):
 			raise ValueError(
-					f"'{self.config_var.__name__}' must be one of {self.config_var.dtype.__args__[0]}"
+					f"'{self.config_var.__name__}' must be one of {self.config_var.dtype.__args__}, "
+					f"not {type(obj)}"
 					) from None
 
 		try:
 			return self.config_var.rtype(obj)
 		except ValueError:
-			raise ValueError(f"'{self.config_var.__name__}' must be {self.config_var.rtype.__args__[0]}") from None
+			raise ValueError(
+					f"'{self.config_var.__name__}' must be {self.config_var.rtype.__args__}, "
+					f"not {type(obj)}"
+					) from None
 
 	def visit_literal(self, raw_config_vars: RawConfigVarsType) -> Any:
 		"""
