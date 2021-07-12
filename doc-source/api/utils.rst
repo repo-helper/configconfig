@@ -3,3 +3,4 @@
 ===========================
 
 .. automodule:: configconfig.utils
+	:member-order: bysource

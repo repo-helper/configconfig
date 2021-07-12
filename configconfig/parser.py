@@ -5,7 +5,7 @@
 Configuration parser.
 """
 #
-#  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
+#  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -51,13 +51,17 @@ class Parser:
 
 	.. code-block:: python
 
-
-		def visit_<configuration value name>(self, raw_config_vars: Dict[str, Any]) -> Any: ...
+		def visit_<configuration value name>(
+				self,
+				raw_config_vars: Dict[str, Any],
+				) -> Any: ...
 
 	The method must return the value to set the configuration variable to,
 	or raise an error in the case of invalid input.
 
 	|
+
+	.. latex:vspace:: -55px
 
 	A final custom parsing step, useful when several values must be set at once,
 	may be implemented in the ``custom_parsing`` method:
@@ -65,11 +69,11 @@ class Parser:
 	.. code-block:: python
 
 		def custom_parsing(
-			self,
-			raw_config_vars: Mapping[str, Any],
-			parsed_config_vars: MutableMapping[str, Any],
-			filename: PathPlus,
-			) -> MutableMapping[str, Any]: ...
+				self,
+				raw_config_vars: Mapping[str, Any],
+				parsed_config_vars: MutableMapping[str, Any],
+				filename: PathPlus,
+				) -> MutableMapping[str, Any]: ...
 
 	This takes the mapping of raw configuration variables,
 	the mapping of parsed variables (those set with the ``visit_<configuration value name>`` method),

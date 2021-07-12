@@ -9,6 +9,10 @@ version: '0.5.0'
 license: 'MIT'
 short_desc: 'Load and validate YAML configuration files.'
 
+use_whey: true
+tox_testenv_extras: all
+min_coverage: 90
+
 conda_channels:
  - conda-forge
 
@@ -27,8 +31,6 @@ extras_require:
  testing:
   - pytest
 
-tox_testenv_extras: all
-
 classifiers:
  - 'Development Status :: 4 - Beta'
  - 'Intended Audience :: Developers'
@@ -38,4 +40,18 @@ keywords:
  - configuration
  - yaml
 
-min_coverage: 90
+sphinx_conf_epilogue:
+ - from configconfig import utils, metaclass
+ - utils.ConfigVarMeta = metaclass.ConfigVarMeta
+ - nitpicky = True
+ - ignore_missing_xrefs = ["^docutils.nodes.*"]
+ - autosummary_widths_builders = ["latex"]
+
+extra_sphinx_extensions:
+ - sphinx_toolbox_experimental.html_section
+ - sphinx_toolbox_experimental.needspace
+ - sphinx_toolbox_experimental.missing_xref
+ - sphinx_toolbox_experimental.autosummary_widths
+
+exclude_files:
+ - contributing

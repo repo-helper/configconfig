@@ -79,7 +79,12 @@ class NotIntTest(ConfigVarTest):
 	that can't be integers.
 	"""  # noqa: D400
 
-	def test_error_int(self):  # noqa: D102
+	def test_error_int(self):
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar`
+		raises a :class:`ValueError` when passed an :class:`int`.
+		"""  # noqa: D400
+
 		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: 1234})
 
@@ -90,7 +95,12 @@ class NotBoolTest(ConfigVarTest):
 	that can't be boolean values.
 	"""  # noqa: D400
 
-	def test_error_bool(self):  # noqa: D102
+	def test_error_bool(self):
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar`
+		raises a :class:`ValueError` when passed a :class:`bool`.
+		"""  # noqa: D400
+
 		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: True})
 
@@ -102,6 +112,11 @@ class NotStrTest(ConfigVarTest):
 	"""  # noqa: D400
 
 	def test_error_str(self):  # noqa: D102
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar`
+		raises a :class:`ValueError` when passed a :class:`str`.
+		"""  # noqa: D400
+
 		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: "a string"})
 
@@ -124,6 +139,10 @@ class ListTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 	"""
 
 	def test_success(self):  # noqa: D102
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar` can correctly parse various :class:`list` values.
+		"""
+
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == self.test_value
 		assert self.config_var.get({self.config_var.__name__: []}) == []
 		assert self.config_var.get(self.different_key_value) == self.default_value
@@ -149,16 +168,30 @@ class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 	"""
 
 	def test_success(self):  # noqa: D102
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar` can correctly parse various directory values.
+		"""
+
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == self.test_value
 		assert self.config_var.get(self.different_key_value) == self.default_value
 		assert self.config_var.get() == self.default_value
 		assert self.config_var.get({}) == self.default_value
 
-	def test_error_list_int(self):  # noqa: D102
+	def test_error_list_int(self):
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar`
+		raises a :class:`ValueError` when passed a :class:`str`.
+		"""  # noqa: D400
+
 		with pytest.raises(ValueError, match="'.*' must be a <class 'str'>"):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
-	def test_error_list_str(self):  # noqa: D102
+	def test_error_list_str(self):
+		"""
+		Checks that the :class:`~configconfig.configvar.ConfigVar`
+		raises a :class:`ValueError` when passed a :class:`str`.
+		"""  # noqa: D400
+
 		with pytest.raises(ValueError):  # noqa: PT011
 			self.config_var.get({self.config_var.__name__: test_list_str})
 

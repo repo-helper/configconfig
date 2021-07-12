@@ -114,6 +114,16 @@ class ConfigVarMeta(type):
 		return cls.get_schema_entry()
 
 	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore  # noqa: D102
+		"""
+		Alias for :meth:`ConfigVar.get <.ConfigVar.get>`
+
+		Returns the value of the :class:`~configconfig.configvar.ConfigVar`.
+
+		:param raw_config_vars: Dictionary to obtain the value from.
+
+		:rtype: See the :attr:`ConfigVar.rtype <.ConfigVar.rtype>` attribute.
+		"""
+
 		return cls.get(raw_config_vars)
 
 	@abstractmethod
@@ -121,4 +131,8 @@ class ConfigVarMeta(type):
 		return NotImplemented
 
 	def __repr__(self) -> str:
+		"""
+		Return a string representation of the :class:`~.ConfigVarMeta` class.
+		"""
+
 		return f"<ConfigVar {self.__name__!r}>"

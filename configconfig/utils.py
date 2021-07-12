@@ -91,7 +91,6 @@ __all__ = [
 		"make_schema",
 		"check_union",
 		"get_json_type",
-		"tab",
 		"RawConfigVarsType",
 		]
 
@@ -205,7 +204,7 @@ basic_schema = MappingProxyType({
 
 def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 	"""
-	Create a ``JSON`` schema from a list of :class:`~configconfig.class.ConfigVar` classes.
+	Create a ``JSON`` schema from a list of :class:`~configconfig.configvar.ConfigVar` classes.
 
 	:param configuration_variables:
 
@@ -225,13 +224,13 @@ def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
 	return schema
 
 
-def check_union(obj: Any, dtype: Union[GenericAliasType, UnionType]) -> bool:
+def check_union(obj: Any, dtype: Union["GenericAliasType", "UnionType"]) -> bool:
 	r"""
 	Check if the type of ``obj`` is one of the types in a :class:`typing.Union`, :class:`typing.List` etc.
 
 	:param obj:
 	:param dtype:
-	:type dtype: :class:`~typing.Union`\, :class:`~typing.List`\, etc.
+	:type dtype: :py:obj:`~typing.Union`\, :class:`~typing.List`\, etc.
 	"""
 
 	args = dtype.__args__
@@ -302,9 +301,9 @@ def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore
 	"""
 	Returns a tuple of permitted values for a :class:`typing.Literal`.
 
-	:param literal:
-
 	.. versionadded:: 0.3.0
+
+	:param literal:
 	"""
 
 	if sys.version_info < (3, 7):

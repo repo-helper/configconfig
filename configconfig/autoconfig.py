@@ -9,7 +9,7 @@ values automatically, the :rst:dir:`conf` directive to document them manually,
 and the :rst:role:`conf` role to link to a :rst:dir:`conf` directive.
 
 .. extras-require:: sphinx
-	:__pkginfo__:
+	:pyproject:
 
 
 Usage
@@ -37,6 +37,8 @@ Usage
 
 	Role to add a cross-reference to a :rst:dir:`conf` or :rst:dir:`autoconfig` directive.
 
+
+.. latex:clearpage::
 
 API Reference
 ---------------

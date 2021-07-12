@@ -2,25 +2,33 @@
 :mod:`configconfig.testing`
 ==============================
 
+.. autosummary-widths:: 4/10
+
 .. automodule:: configconfig.testing
 	:no-members:
 	:autosummary-members:
 
 .. autoclass:: ConfigVarTest
+	:no-autosummary:
 
+.. latex:clearpage::
 
 .. autoclass:: NotIntTest
 	:undoc-members:
 	:exclude-members: config_var
+	:no-autosummary:
 
 .. autoclass:: NotBoolTest
 	:undoc-members:
 	:exclude-members: config_var
+	:no-autosummary:
 
 .. autoclass:: NotStrTest
 	:undoc-members:
 	:exclude-members: config_var
+	:no-autosummary:
 
+.. autosummary-widths:: 1/3
 
 .. autoclass:: ListTest
 	:undoc-members:
@@ -30,9 +38,13 @@
 	:undoc-members:
 	:exclude-members: config_var
 
+.. latex:clearpage::
+
 .. autoclass:: BoolTrueTest
 	:undoc-members:
 	:exclude-members: config_var
+
+.. latex:clearpage::
 
 .. autoclass:: BoolFalseTest
 	:undoc-members:

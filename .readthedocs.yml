@@ -5,7 +5,9 @@ version: 2
 sphinx:
   builder: html
   configuration: doc-source/conf.py
-formats: all
+formats:
+ - pdf
+ - htmlzip
 python:
   version: 3.8
   install:
@@ -13,3 +15,5 @@ python:
    - requirements: doc-source/requirements.txt
    - method: pip
      path: .
+     extra_requirements:
+      - all

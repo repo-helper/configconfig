@@ -11,27 +11,14 @@
 # This script based on https://github.com/rocky/python-uncompyle6/blob/master/__pkginfo__.py
 #
 
-# stdlib
-import pathlib
-
 __all__ = [
-		"__copyright__",
 		"__version__",
-		"repo_root",
-		"install_requires",
 		"extras_require",
 		]
 
-__copyright__ = """
-2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
-"""
-
 __version__ = "0.5.0"
-
-repo_root = pathlib.Path(__file__).parent
-install_requires = (repo_root / "requirements.txt").read_text(encoding="utf-8").split('\n')
 extras_require = {
-		"sphinx": ["sphinx<3.4.0,>=3.0.3", "sphinx-toolbox", "docutils"],
+		"sphinx": ["docutils", "sphinx<3.4.0,>=3.0.3", "sphinx-toolbox"],
 		"testing": ["pytest"],
-		"all": ["docutils", "pytest", "sphinx-toolbox", "sphinx<3.4.0,>=3.0.3"]
+		"all": ["docutils", "pytest", "sphinx<3.4.0,>=3.0.3", "sphinx-toolbox"]
 		}
