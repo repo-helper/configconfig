@@ -4,10 +4,8 @@
 """
 Helpers for testing :class:`~configconfig.configvar.ConfigVar`.
 
-
 .. extras-require:: testing
-	:__pkginfo__:
-
+	:pyproject:
 
 .. versionadded:: 0.2.0
 """

@@ -43,7 +43,7 @@ __all__ = ["ConfigVar"]
 
 
 class ConfigVar(metaclass=ConfigVarMeta):
-	r"""
+	"""
 	Base class for ``YAML`` configuration values.
 
 	The class docstring should be the description of the config var, with an example,
@@ -52,7 +52,9 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	If you would prefer a more Pythonic naming approach the variable name can
 	be configured with the ``name`` class variable.
 
-	**Example:**
+	.. latex:vspace:: -5px
+
+	:bold-title:`Example:`
 
 	.. code-block:: python
 
@@ -66,7 +68,6 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 				platforms:
 				  - Windows
-				  - macOS
 				  - Linux
 
 			These values determine the GitHub test workflows to enable,
@@ -76,6 +77,8 @@ class ConfigVar(metaclass=ConfigVarMeta):
 			dtype = List[Literal["Windows", "macOS", "Linux"]]
 			default: List[str] = ["Windows", "macOS", "Linux"]
 			category: str = "packaging"
+
+	.. latex:vspace:: -10px
 
 	"""
 
@@ -133,7 +136,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 		:param raw_config_vars: Dictionary to obtain the value from.
 
-		:rtype: See the ``rtype`` attribute.
+		:rtype: See the :attr:`~.ConfigVar.rtype` attribute.
 		"""
 
 		return cls.validator(cls.validate(raw_config_vars))
@@ -145,7 +148,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 		:param raw_config_vars: Dictionary to obtain the value from.
 
-		:rtype: See the ``rtype`` attribute.
+		:rtype: See the :attr:`~.ConfigVar.rtype` attribute.
 		"""
 
 		if raw_config_vars is None:
@@ -160,7 +163,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	@classmethod
 	def make_documentation(cls):
 		"""
-		Returns the reStructuredText documentation for the :class:`~.ConfVar`.
+		Returns the reStructuredText documentation for the :class:`~.ConfigVar`.
 		"""
 
 		docstring = cls.__doc__ or ''
