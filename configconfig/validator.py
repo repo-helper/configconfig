@@ -38,7 +38,7 @@ from typing import Any, Dict, Iterable, List, Optional, Union
 import jsonschema  # type: ignore
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.utils import strtobool
-from ruamel.yaml import safe_load, safe_load_all
+from ruamel.yaml import YAML
 from typing_extensions import NoReturn
 from typing_inspect import get_origin, is_literal_type  # type: ignore
 
@@ -304,10 +304,11 @@ def validate_files(
 
 	schemafile = pathlib.Path(schemafile)
 
-	schema = safe_load(schemafile.read_text(encoding=encoding))
+	yaml = YAML(typ="safe", pure=True)
+	schema = yaml.load(schemafile.read_text(encoding=encoding))
 
 	for filename in datafiles:
-		for document in safe_load_all(pathlib.Path(filename).read_text(encoding=encoding)):
+		for document in yaml.load_all(pathlib.Path(filename).read_text(encoding=encoding)):
 			try:
 				jsonschema.validate(document, schema, format_checker=jsonschema.FormatChecker())
 			except jsonschema.exceptions.ValidationError as e:
