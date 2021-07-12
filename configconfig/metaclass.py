@@ -115,7 +115,7 @@ class ConfigVarMeta(type):
 
 	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore  # noqa: D102
 		"""
-		Alias for :meth:`ConfigVar.get <.ConfigVar.get>`
+		Alias for :meth:`ConfigVar.get <.ConfigVar.get>`.
 
 		Returns the value of the :class:`~configconfig.configvar.ConfigVar`.
 

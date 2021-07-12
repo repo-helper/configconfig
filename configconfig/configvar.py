@@ -80,7 +80,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 
 	.. latex:vspace:: -10px
 
-	"""
+	"""  # noqa: D300,D301
 
 	dtype: Type
 	"""
