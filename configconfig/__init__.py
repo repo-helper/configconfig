@@ -29,5 +29,5 @@ Load and validate YAML configuration files.
 __author__: str = "Dominic Davis-Foster"
 __copyright__: str = "2020 Dominic Davis-Foster"
 __license__: str = "MIT License"
-__version__: str = "0.5.0"
+__version__: str = "0.6.0"
 __email__: str = "dominic@davis-foster.co.uk"

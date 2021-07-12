@@ -16,7 +16,7 @@ __all__ = [
 		"extras_require",
 		]
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 extras_require = {
 		"sphinx": ["docutils", "sphinx<3.4.0,>=3.0.3", "sphinx-toolbox"],
 		"testing": ["pytest"],
