@@ -190,7 +190,7 @@ def get_yaml_type(type_: Type) -> str:
 		return " or ".join(repr(x) for x in types)
 
 	elif isinstance(type_, EnumMeta):
-		return " or ".join([repr(x._value_) for x in type_])  # type: ignore
+		return " or ".join([repr(x._value_) for x in type_])
 
 	else:
 		return str(type_)
@@ -278,7 +278,7 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 		return {"enum": [x for x in get_literal_values(type_)]}
 
 	elif isinstance(type_, EnumMeta):
-		return {"enum": [x._value_ for x in type_]}  # type: ignore
+		return {"enum": [x._value_ for x in type_]}
 
 	elif type_ is bool:
 		return {"type": ["boolean", "string"]}
