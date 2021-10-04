@@ -60,7 +60,8 @@ configconfig
 		:workflow: mypy
 		:alt: mypy status
 
-	.. |requires| requires-io-shield::
+	.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/configconfig/badge.svg
+		:target: https://dependency-dash.herokuapp.com/github/domdfcoding/configconfig/
 		:alt: Requirements Status
 
 	.. |coveralls| coveralls-shield::
