@@ -71,7 +71,7 @@ API Reference
 
 # stdlib
 import warnings
-from typing import Any, Dict, Sequence, Type
+from typing import Any, Dict, List, Sequence, Type
 
 # 3rd party
 from docutils import nodes  # nodep
@@ -201,6 +201,19 @@ def parse_conf_node(env: BuildEnvironment, text: str, node: addnodes.desc_signat
 	return name  # this will be the link
 
 
+def _get_outdated(
+		app: Sphinx,
+		env: BuildEnvironment,
+		added: List[str],
+		changed: List[str],
+		removed: List[str],
+		) -> List[str]:
+	if not hasattr(env, conf_node_purger.attr_name):
+		return []
+
+	return [todo["docname"] for todo in getattr(env, conf_node_purger.attr_name)]
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
 	"""
 	Setup Sphinx Extension.
@@ -210,6 +223,7 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
 	app.add_directive("autoconfig", AutoConfigDirective)
 	app.connect("env-purge-doc", conf_node_purger.purge_nodes)
+	app.connect("env-get-outdated", _get_outdated)
 
 	app.add_object_type(
 			directivename="conf",
