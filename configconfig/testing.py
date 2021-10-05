@@ -109,7 +109,7 @@ class NotStrTest(ConfigVarTest):
 	that can't be strings.
 	"""  # noqa: D400
 
-	def test_error_str(self):  # noqa: D102
+	def test_error_str(self):
 		"""
 		Checks that the :class:`~configconfig.configvar.ConfigVar`
 		raises a :class:`ValueError` when passed a :class:`str`.
@@ -136,7 +136,7 @@ class ListTest(NotStrTest, NotBoolTest, NotIntTest, ConfigVarTest):
 	used by the :class:`~configconfig.configvar.ConfigVar`
 	"""
 
-	def test_success(self):  # noqa: D102
+	def test_success(self):
 		"""
 		Checks that the :class:`~configconfig.configvar.ConfigVar` can correctly parse various :class:`list` values.
 		"""
@@ -165,7 +165,7 @@ class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 	used by the :class:`~configconfig.configvar.ConfigVar`
 	"""
 
-	def test_success(self):  # noqa: D102
+	def test_success(self):
 		"""
 		Checks that the :class:`~configconfig.configvar.ConfigVar` can correctly parse various directory values.
 		"""
@@ -181,7 +181,7 @@ class DirectoryTest(NotBoolTest, NotIntTest, ConfigVarTest):
 		raises a :class:`ValueError` when passed a :class:`str`.
 		"""  # noqa: D400
 
-		with pytest.raises(ValueError, match="'.*' must be a <class 'str'>"):  # noqa: PT011
+		with pytest.raises(ValueError, match="'.*' must be a <class 'str'>"):
 			self.config_var.get({self.config_var.__name__: test_list_int})
 
 	def test_error_list_str(self):
