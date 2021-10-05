@@ -4,7 +4,7 @@ build-backend = "whey"
 
 [project]
 name = "configconfig"
-version = "0.6.0"
+version = "0.6.1"
 description = "Load and validate YAML configuration files."
 readme = "README.rst"
 keywords = [ "configuration", "yaml",]
