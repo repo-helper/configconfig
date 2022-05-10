@@ -52,6 +52,8 @@ __all__ = ["Validator", "validate_files"]
 class Validator:
 	"""
 	Methods are named ``visit_<type>``.
+
+	.. autosummary-widths:: 4/10
 	"""
 
 	def __init__(self, config_var: ConfigVarMeta):

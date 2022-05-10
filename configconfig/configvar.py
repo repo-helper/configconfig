@@ -49,8 +49,8 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	The class docstring should be the description of the config var, with an example,
 	and the name of the class should be the variable name.
 
-	If you would prefer a more Pythonic naming approach the variable name can
-	be configured with the ``name`` class variable.
+	Alternatively, for a more Pythonic naming approach, the variable name can
+	be set with the ``name`` class variable.
 
 	.. latex:vspace:: -5px
 

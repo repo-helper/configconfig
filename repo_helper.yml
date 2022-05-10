@@ -46,13 +46,11 @@ sphinx_conf_epilogue:
  - utils.ConfigVarMeta = metaclass.ConfigVarMeta
  - nitpicky = True
  - ignore_missing_xrefs = ["^docutils.nodes.*"]
- - autosummary_widths_builders = ["latex"]
+ - needspace_amount = r"5\baselineskip"
 
 extra_sphinx_extensions:
- - sphinx_toolbox_experimental.html_section
- - sphinx_toolbox_experimental.needspace
  - sphinx_toolbox_experimental.missing_xref
- - sphinx_toolbox_experimental.autosummary_widths
+ - sphinx_toolbox.more_autosummary.column_widths
 
 exclude_files:
  - contributing

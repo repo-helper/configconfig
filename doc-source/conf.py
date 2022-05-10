@@ -78,4 +78,4 @@ from configconfig import metaclass, utils
 utils.ConfigVarMeta = metaclass.ConfigVarMeta
 nitpicky = True
 ignore_missing_xrefs = ["^docutils.nodes.*"]
-autosummary_widths_builders = ["latex"]
+needspace_amount = r"5\baselineskip"
