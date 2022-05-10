@@ -60,8 +60,8 @@ configconfig
 		:workflow: mypy
 		:alt: mypy status
 
-	.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/configconfig/badge.svg
-		:target: https://dependency-dash.herokuapp.com/github/domdfcoding/configconfig/
+	.. |requires| image:: https://dependency-dash.herokuapp.com/github/repo-helper/configconfig/badge.svg
+		:target: https://dependency-dash.herokuapp.com/github/repo-helper/configconfig/
 		:alt: Requirements Status
 
 	.. |coveralls| coveralls-shield::
@@ -168,6 +168,6 @@ Contents
 
 	View the :ref:`Function Index <genindex>` or browse the `Source Code <_modules/index.html>`__.
 
-	:github:repo:`Browse the GitHub Repository <domdfcoding/configconfig>`
+	:github:repo:`Browse the GitHub Repository <repo-helper/configconfig>`
 
 .. end links

@@ -19,9 +19,9 @@ email = "dominic@davis-foster.co.uk"
 file = "LICENSE"
 
 [project.urls]
-Homepage = "https://github.com/domdfcoding/configconfig"
-"Issue Tracker" = "https://github.com/domdfcoding/configconfig/issues"
-"Source Code" = "https://github.com/domdfcoding/configconfig"
+Homepage = "https://github.com/repo-helper/configconfig"
+"Issue Tracker" = "https://github.com/repo-helper/configconfig/issues"
+"Source Code" = "https://github.com/repo-helper/configconfig"
 Documentation = "https://configconfig.readthedocs.io/en/latest"
 
 [project.optional-dependencies]
@@ -46,7 +46,7 @@ platforms = [ "Windows", "macOS", "Linux",]
 license-key = "MIT"
 
 [tool.sphinx-pyproject]
-github_username = "domdfcoding"
+github_username = "repo-helper"
 github_repository = "configconfig"
 author = "Dominic Davis-Foster"
 project = "configconfig"

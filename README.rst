@@ -34,40 +34,40 @@ configconfig
 	:target: https://configconfig.readthedocs.io/en/latest
 	:alt: Documentation Build Status
 
-.. |docs_check| image:: https://github.com/domdfcoding/configconfig/workflows/Docs%20Check/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Docs+Check%22
+.. |docs_check| image:: https://github.com/repo-helper/configconfig/workflows/Docs%20Check/badge.svg
+	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22Docs+Check%22
 	:alt: Docs Check Status
 
-.. |actions_linux| image:: https://github.com/domdfcoding/configconfig/workflows/Linux/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Linux%22
+.. |actions_linux| image:: https://github.com/repo-helper/configconfig/workflows/Linux/badge.svg
+	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22Linux%22
 	:alt: Linux Test Status
 
-.. |actions_windows| image:: https://github.com/domdfcoding/configconfig/workflows/Windows/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Windows%22
+.. |actions_windows| image:: https://github.com/repo-helper/configconfig/workflows/Windows/badge.svg
+	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22Windows%22
 	:alt: Windows Test Status
 
-.. |actions_macos| image:: https://github.com/domdfcoding/configconfig/workflows/macOS/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22macOS%22
+.. |actions_macos| image:: https://github.com/repo-helper/configconfig/workflows/macOS/badge.svg
+	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22macOS%22
 	:alt: macOS Test Status
 
-.. |actions_flake8| image:: https://github.com/domdfcoding/configconfig/workflows/Flake8/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22Flake8%22
+.. |actions_flake8| image:: https://github.com/repo-helper/configconfig/workflows/Flake8/badge.svg
+	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22Flake8%22
 	:alt: Flake8 Status
 
-.. |actions_mypy| image:: https://github.com/domdfcoding/configconfig/workflows/mypy/badge.svg
-	:target: https://github.com/domdfcoding/configconfig/actions?query=workflow%3A%22mypy%22
+.. |actions_mypy| image:: https://github.com/repo-helper/configconfig/workflows/mypy/badge.svg
+	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/configconfig/badge.svg
-	:target: https://dependency-dash.herokuapp.com/github/domdfcoding/configconfig/
+.. |requires| image:: https://dependency-dash.herokuapp.com/github/repo-helper/configconfig/badge.svg
+	:target: https://dependency-dash.herokuapp.com/github/repo-helper/configconfig/
 	:alt: Requirements Status
 
-.. |coveralls| image:: https://img.shields.io/coveralls/github/domdfcoding/configconfig/master?logo=coveralls
-	:target: https://coveralls.io/github/domdfcoding/configconfig?branch=master
+.. |coveralls| image:: https://img.shields.io/coveralls/github/repo-helper/configconfig/master?logo=coveralls
+	:target: https://coveralls.io/github/repo-helper/configconfig?branch=master
 	:alt: Coverage
 
-.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/domdfcoding/configconfig?logo=codefactor
-	:target: https://www.codefactor.io/repository/github/domdfcoding/configconfig
+.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/repo-helper/configconfig?logo=codefactor
+	:target: https://www.codefactor.io/repository/github/repo-helper/configconfig
 	:alt: CodeFactor Grade
 
 .. |pypi-version| image:: https://img.shields.io/pypi/v/configconfig
@@ -94,19 +94,19 @@ configconfig
 	:target: https://anaconda.org/domdfcoding/configconfig
 	:alt: Conda - Platform
 
-.. |license| image:: https://img.shields.io/github/license/domdfcoding/configconfig
-	:target: https://github.com/domdfcoding/configconfig/blob/master/LICENSE
+.. |license| image:: https://img.shields.io/github/license/repo-helper/configconfig
+	:target: https://github.com/repo-helper/configconfig/blob/master/LICENSE
 	:alt: License
 
-.. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/configconfig
+.. |language| image:: https://img.shields.io/github/languages/top/repo-helper/configconfig
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/configconfig/v0.6.1
-	:target: https://github.com/domdfcoding/configconfig/pulse
+.. |commits-since| image:: https://img.shields.io/github/commits-since/repo-helper/configconfig/v0.6.1
+	:target: https://github.com/repo-helper/configconfig/pulse
 	:alt: GitHub commits since tagged version
 
-.. |commits-latest| image:: https://img.shields.io/github/last-commit/domdfcoding/configconfig
-	:target: https://github.com/domdfcoding/configconfig/commit/master
+.. |commits-latest| image:: https://img.shields.io/github/last-commit/repo-helper/configconfig
+	:target: https://github.com/repo-helper/configconfig/commit/master
 	:alt: GitHub last commit
 
 .. |maintained| image:: https://img.shields.io/maintenance/yes/2022
