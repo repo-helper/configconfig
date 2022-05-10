@@ -105,7 +105,7 @@ class AutoConfigDirective(SphinxDirective):
 	# or the name of the module if :category: given
 	option_spec = {"category": unchanged}
 
-	def run(self) -> Sequence[nodes.Node]:  # type: ignore
+	def run(self) -> Sequence[nodes.Node]:
 		"""
 		Process the content of the directive.
 		"""
