@@ -1,5 +1,5 @@
 domdf-python-tools>=0.10.0
 jsonschema>=3.2.0
-ruamel-yaml>=0.16.12
+ruamel.yaml>=0.16.12
 typing-extensions>=3.7.4.3
 typing-inspect>=0.6.0
