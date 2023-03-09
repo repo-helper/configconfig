@@ -97,12 +97,13 @@ __all__ = [
 #: A literal ``TAB`` (``\t``) character for use in f-strings.
 tab = '\t'
 
-if sys.version_info < (3, 7):
-	UnionType = Any
-	GenericAliasType = Any
-else:
-	UnionType = type(Union)
-	GenericAliasType = type(List)
+# TODO: latest mypy no longer happy
+# if sys.version_info < (3, 7):
+UnionType = Any
+GenericAliasType = Any
+# else:
+# 	UnionType = type(Union)
+# 	GenericAliasType = type(List)
 
 
 def optional_getter(raw_config_vars: Dict[str, Any], cls: "ConfigVarMeta", required: bool) -> Any:
