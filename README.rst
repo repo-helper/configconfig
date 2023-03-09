@@ -58,8 +58,8 @@ configconfig
 	:target: https://github.com/repo-helper/configconfig/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://dependency-dash.herokuapp.com/github/repo-helper/configconfig/badge.svg
-	:target: https://dependency-dash.herokuapp.com/github/repo-helper/configconfig/
+.. |requires| image:: https://dependency-dash.repo-helper.uk/github/repo-helper/configconfig/badge.svg
+	:target: https://dependency-dash.repo-helper.uk/github/repo-helper/configconfig/
 	:alt: Requirements Status
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/repo-helper/configconfig/master?logo=coveralls
@@ -109,7 +109,7 @@ configconfig
 	:target: https://github.com/repo-helper/configconfig/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2022
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2023
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/configconfig
