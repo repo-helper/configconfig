@@ -2,11 +2,11 @@
 import pytest
 from bs4 import BeautifulSoup  # type: ignore
 from coincidence.selectors import min_version, only_version
-from pytest_regressions.file_regression import FileRegressionFixture
-from sphinx_toolbox.testing import check_html_regression
+from sphinx.application import Sphinx
+from sphinx_toolbox.testing import HTMLRegressionFixture
 
 
-def test_build_example(testing_app):
+def test_build_example(testing_app: Sphinx):
 	testing_app.build()
 	testing_app.build()
 
@@ -17,12 +17,12 @@ def test_build_example(testing_app):
 				"autoconfig.html",
 				], indirect=True
 		)
-def test_html_output(page: BeautifulSoup, file_regression: FileRegressionFixture):
+def test_html_output(page: BeautifulSoup, html_regression: HTMLRegressionFixture):
 	"""
 	Parametrize new files here rather than as their own function.
 	"""
 
-	check_html_regression(page, file_regression)
+	html_regression.check(page)
 
 
 @only_version("3.6")
@@ -31,9 +31,9 @@ def test_html_output(page: BeautifulSoup, file_regression: FileRegressionFixture
 				"autoconfig.html",
 				], indirect=True
 		)
-def test_html_output_py36(page: BeautifulSoup, file_regression: FileRegressionFixture):
+def test_html_output_py36(page: BeautifulSoup, html_regression: HTMLRegressionFixture):
 	"""
 	Parametrize new files here rather than as their own function.
 	"""
 
-	check_html_regression(page, file_regression)
+	html_regression.check(page)

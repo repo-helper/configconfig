@@ -1,6 +1,6 @@
 # stdlib
 import pathlib
-from typing import Any, Dict, Iterable, List, Tuple
+from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Tuple
 
 # 3rd party
 from domdf_python_tools.paths import PathPlus
@@ -105,7 +105,12 @@ class DemoParser(Parser):
 			tox_testenv_extras,
 			]
 
-	def custom_parsing(self, raw_config_vars, parsed_config_vars, filename: PathPlus):
+	def custom_parsing(
+			self,
+			raw_config_vars: Mapping[str, Any],
+			parsed_config_vars: MutableMapping[str, Any],
+			filename: PathPlus,
+			) -> MutableMapping[str, Any]:
 		# Packaging
 		extras_require, additional_requirements_files = parse_extras(raw_config_vars, filename.parent)
 		parsed_config_vars["extras_require"] = extras_require
@@ -134,7 +139,7 @@ class DemoParser(Parser):
 		return parsed_config_vars
 
 
-def parse_extras(raw_config_vars: Dict[str, Any], repo_path: pathlib.Path) -> Tuple[Dict, List[str]]:
+def parse_extras(raw_config_vars: Mapping[str, Any], repo_path: pathlib.Path) -> Tuple[Dict, List[str]]:
 
 	additional_requirements_files = raw_config_vars.get("additional_requirements_files", [])
 

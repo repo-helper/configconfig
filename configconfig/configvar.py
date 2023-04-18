@@ -161,7 +161,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 		return validator.validate(raw_config_vars)
 
 	@classmethod
-	def make_documentation(cls):
+	def make_documentation(cls) -> str:
 		"""
 		Returns the reStructuredText documentation for the :class:`~.ConfigVar`.
 		"""

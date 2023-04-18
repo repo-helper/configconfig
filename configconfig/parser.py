@@ -85,7 +85,7 @@ class Parser:
 	def __init__(self, allow_unknown_keys: bool = False):
 		self.allow_unknown_keys = allow_unknown_keys
 
-	def run(self, filename: PathLike):
+	def run(self, filename: PathLike) -> MutableMapping[str, Any]:
 		"""
 		Parse configuration from the given file.
 

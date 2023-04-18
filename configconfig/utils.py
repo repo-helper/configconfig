@@ -62,7 +62,7 @@ else:  # pragma: no cover (>=py38)
 	# 3rd party
 	from typing_inspect import get_origin
 
-	def get_args(tp):
+	def get_args(tp):  # noqa: MAN001,MAN002
 		"""Get type arguments with all substitutions performed.
 
 		For unions, basic simplifications used by Union constructor are performed.
@@ -144,7 +144,7 @@ yaml_type_lookup = {
 		}
 
 
-def check_type(left: Type, *right: Type):
+def check_type(left: Type, *right: Type) -> bool:
 	return left in right or get_origin(left) in right
 
 

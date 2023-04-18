@@ -53,7 +53,7 @@ class ConfigVarMeta(type):
 	category: str
 	__name__: str
 
-	def __new__(cls, name: str, bases, dct: Dict):  # noqa: D102
+	def __new__(cls, name: str, bases, dct: Dict):  # noqa: D102,MAN001
 		x = cast("ConfigVar", super().__new__(cls, name, bases, dct))
 
 		def get(name, default):
@@ -127,7 +127,7 @@ class ConfigVarMeta(type):
 		return cls.get(raw_config_vars)
 
 	@abstractmethod
-	def get(cls, raw_config_vars: Mapping[str, Any]):  # pragma: no cover  # noqa: D102
+	def get(cls, raw_config_vars: Mapping[str, Any]):  # pragma: no cover  # noqa: D102,MAN002
 		return NotImplemented
 
 	def __repr__(self) -> str:

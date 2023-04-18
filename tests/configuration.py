@@ -1,6 +1,6 @@
 # stdlib
 import os
-from typing import Any, Dict, Iterable, List, Optional, Union
+from typing import Any, Dict, Iterable, List, Optional, Union, cast
 
 # 3rd party
 from typing_extensions import Literal
@@ -238,7 +238,7 @@ class import_name(ConfigVar):  # noqa
 			return cls.validator(cls.validate(raw_config_vars))
 
 	@classmethod
-	def validate(cls, raw_config_vars: Optional[Dict[str, Any]] = None):
+	def validate(cls, raw_config_vars: Optional[Dict[str, Any]] = None):  # noqa: MAN002
 
 		if raw_config_vars is None:
 			raw_config_vars = {}
@@ -480,8 +480,8 @@ class python_deploy_version(ConfigVar):  # noqa
 	category: str = "python versions"
 
 
-def default_python_versions(raw_config_vars):
-	return [python_deploy_version(raw_config_vars)]
+def default_python_versions(raw_config_vars: Dict[str, Any]) -> List[str]:
+	return [cast(str, python_deploy_version(raw_config_vars))]
 
 
 class python_versions(ConfigVar):  # noqa

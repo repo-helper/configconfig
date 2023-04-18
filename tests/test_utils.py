@@ -1,6 +1,6 @@
 # stdlib
 from enum import Enum
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Type, Union
 
 # 3rd party
 import pytest
@@ -46,7 +46,7 @@ class MyEnum(str, Enum):
 				(MyEnum, {"enum": ["dog", "cat"]}),
 				]
 		)
-def test_get_json_type(value, expects):
+def test_get_json_type(value: Type, expects: Dict[str, Any]):
 	assert get_json_type(value) == expects
 
 
@@ -69,5 +69,5 @@ def test_get_json_type(value, expects):
 				(MyEnum, "'dog' or 'cat'"),
 				]
 		)
-def test_get_yaml_type(value, expects):
+def test_get_yaml_type(value: Type, expects: str):
 	assert get_yaml_type(value) == expects

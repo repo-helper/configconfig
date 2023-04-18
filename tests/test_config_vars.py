@@ -86,7 +86,7 @@ class Test_rtfd_author:
 					({}, "A value for 'author' is required."),
 					]
 			)
-	def test_errors(self, wrong_value: Dict[str, Any], match):
+	def test_errors(self, wrong_value: Dict[str, Any], match: str):
 		with pytest.raises(ValueError, match=match):
 			rtfd_author.get(wrong_value)
 
@@ -109,7 +109,7 @@ def test_modname():
 				({}, "A value for 'modname' is required."),
 				]
 		)
-def test_modname_errors(wrong_value, match):
+def test_modname_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
 		modname.get(wrong_value)
 
@@ -152,7 +152,7 @@ class Test_conda_description:
 					({}, "A value for 'short_desc' is required."),
 					]
 			)
-	def test_errors(self, wrong_value: Dict[str, Any], match):
+	def test_errors(self, wrong_value: Dict[str, Any], match: str):
 		with pytest.raises(ValueError, match=match):
 			conda_description.get(wrong_value)
 
@@ -176,7 +176,7 @@ def test_copyright_years():
 				({}, "A value for 'copyright_years' is required."),
 				]
 		)
-def test_copyright_years_errors(wrong_value, match):
+def test_copyright_years_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
 		copyright_years.get(wrong_value)
 
@@ -202,7 +202,7 @@ def test_repo_name():
 				({}, "A value for 'modname' is required."),
 				]
 		)
-def test_repo_name_errors(wrong_value, match):
+def test_repo_name_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
 		repo_name.get(wrong_value)
 
@@ -227,7 +227,7 @@ def test_pypi_name():
 				({}, "A value for 'modname' is required."),
 				]
 		)
-def test_pypi_name_errors(wrong_value, match):
+def test_pypi_name_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
 		pypi_name.get(wrong_value)
 
@@ -254,7 +254,7 @@ def test_import_name():
 				({}, "A value for 'modname' is required."),
 				]
 		)
-def test_import_name_errors(wrong_value, match):
+def test_import_name_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
 		import_name.get(wrong_value)
 
@@ -489,7 +489,7 @@ class Test_platforms:
 							),
 					]
 			)
-	def test_errors(self, wrong_value, match):
+	def test_errors(self, wrong_value: Dict[str, Any], match: str):
 		with pytest.raises(ValueError, match=match):
 			self.config_var.get(wrong_value)
 
