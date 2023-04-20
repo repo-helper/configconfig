@@ -22,7 +22,7 @@ def test_html_output(page: BeautifulSoup, html_regression: HTMLRegressionFixture
 	Parametrize new files here rather than as their own function.
 	"""
 
-	html_regression.check(page)
+	html_regression.check(page, jinja2=True)
 
 
 @only_version("3.6")
