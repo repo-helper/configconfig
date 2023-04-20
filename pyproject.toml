@@ -4,7 +4,7 @@ build-backend = "whey"
 
 [project]
 name = "configconfig"
-version = "0.6.1"
+version = "0.6.2"
 description = "Load and validate YAML configuration files."
 readme = "README.rst"
 keywords = [ "configuration", "yaml",]
@@ -50,7 +50,7 @@ github_username = "repo-helper"
 github_repository = "configconfig"
 author = "Dominic Davis-Foster"
 project = "configconfig"
-copyright = "2020-2021 Dominic Davis-Foster"
+copyright = "2020-2023 Dominic Davis-Foster"
 language = "en"
 package_root = "configconfig"
 extensions = [

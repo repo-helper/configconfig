@@ -101,7 +101,7 @@ configconfig
 .. |language| image:: https://img.shields.io/github/languages/top/repo-helper/configconfig
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/repo-helper/configconfig/v0.6.1
+.. |commits-since| image:: https://img.shields.io/github/commits-since/repo-helper/configconfig/v0.6.2
 	:target: https://github.com/repo-helper/configconfig/pulse
 	:alt: GitHub commits since tagged version
 
