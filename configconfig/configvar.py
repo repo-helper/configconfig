@@ -32,7 +32,7 @@ from typing import Any, Callable, Optional, Type, Union
 
 # 3rd party
 from domdf_python_tools.stringlist import StringList
-from typing_inspect import is_literal_type  # type: ignore
+from typing_inspect import is_literal_type  # type: ignore[import]
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
@@ -190,7 +190,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 				buf.append("**Default**: [ ]")
 			elif cls.default == {}:
 				buf.append("**Default**: { }")
-			elif isinstance(cls.default, Callable):  # type: ignore
+			elif isinstance(cls.default, Callable):  # type: ignore[arg-type]
 				buf.append(f"**Default**: The value of :conf:`{cls.default.__name__}`")
 			elif isinstance(cls.default, bool):
 				buf.append(f"**Default**: :py:obj:`{cls.default}`")

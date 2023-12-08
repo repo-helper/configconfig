@@ -43,7 +43,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, List, Type, TypeVar, Unio
 
 # 3rd party
 from typing_extensions import Literal
-from typing_inspect import is_literal_type  # type: ignore
+from typing_inspect import is_literal_type  # type: ignore[import]
 
 if TYPE_CHECKING:
 	# this package
@@ -126,7 +126,7 @@ def optional_getter(raw_config_vars: Dict[str, Any], cls: "ConfigVarMeta", requi
 		if cls.__name__ in raw_config_vars:
 			return raw_config_vars[cls.__name__]
 		else:
-			if isinstance(cls.default, Callable):  # type: ignore
+			if isinstance(cls.default, Callable):  # type: ignore[arg-type]
 				return copy.deepcopy(cls.default(raw_config_vars))
 			else:
 				return copy.deepcopy(cls.default)
@@ -275,7 +275,7 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 	elif check_type(type_, dict, Dict):
 		return {"type": "object"}
 
-	elif check_type(type_, Literal) or is_literal_type(type_):  # type: ignore
+	elif check_type(type_, Literal) or is_literal_type(type_):  # type: ignore[arg-type]
 		return {"enum": [x for x in get_literal_values(type_)]}
 
 	elif isinstance(type_, EnumMeta):
@@ -298,7 +298,7 @@ json_type_lookup = {
 		}
 
 
-def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore
+def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore[misc]
 	"""
 	Returns a tuple of permitted values for a :class:`typing.Literal`.
 

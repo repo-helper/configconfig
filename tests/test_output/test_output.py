@@ -1,6 +1,6 @@
 # 3rd party
 import pytest
-from bs4 import BeautifulSoup  # type: ignore
+from bs4 import BeautifulSoup  # type: ignore[import]
 from coincidence.selectors import min_version, only_version
 from sphinx.application import Sphinx
 from sphinx_toolbox.testing import HTMLRegressionFixture

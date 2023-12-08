@@ -56,7 +56,7 @@ class ConfigVarMeta(type):
 	def __new__(cls, name: str, bases, dct: Dict):  # noqa: D102,MAN001
 		x = cast("ConfigVar", super().__new__(cls, name, bases, dct))
 
-		def get(name, default):
+		def get(name: str, default: Any) -> Any:
 			return dct.get(name, getattr(x, name, default))
 
 		x.dtype = get("dtype", Any)
@@ -70,7 +70,7 @@ class ConfigVarMeta(type):
 
 		x.required = get("required", False)
 		x.default = get("default", '')
-		x.validator = get("validator", lambda y: y)  # type: ignore
+		x.validator = get("validator", lambda y: y)  # type: ignore[assignment]
 		x.category = get("category", "other")
 		x.__name__ = dct.get("name", dct.get("__name__", x.__name__))
 
@@ -113,7 +113,7 @@ class ConfigVarMeta(type):
 	def schema_entry(cls) -> Dict[str, Any]:  # noqa: D102
 		return cls.get_schema_entry()
 
-	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore  # noqa: D102
+	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore[override]
 		"""
 		Alias for :meth:`ConfigVar.get <.ConfigVar.get>`.
 

@@ -35,12 +35,12 @@ import pathlib
 from typing import Any, Dict, Iterable, List, Optional, Union
 
 # 3rd party
-import jsonschema  # type: ignore
+import jsonschema  # type: ignore[import]
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.utils import strtobool
 from ruamel.yaml import YAML
 from typing_extensions import NoReturn
-from typing_inspect import get_origin, is_literal_type  # type: ignore
+from typing_inspect import get_origin, is_literal_type  # type: ignore[import]
 
 # this package
 from configconfig.metaclass import ConfigVarMeta
