@@ -1,3 +1,4 @@
+alabaster<=0.7.13
 bs4>=0.0.1
 coincidence>=0.2.0
 coverage>=5.1
@@ -10,3 +11,9 @@ pytest-cov>=2.8.1
 pytest-randomly>=3.7.0
 pytest-regressions>=2.0.2
 pytest-timeout>=1.4.2
+sphinxcontrib-applehelp<=1.0.4
+sphinxcontrib-devhelp<=1.0.2
+sphinxcontrib-htmlhelp<=2.0.1
+sphinxcontrib-jsmath<=1.0.1
+sphinxcontrib-qthelp<=1.0.3
+sphinxcontrib-serializinghtml<=1.1.5
