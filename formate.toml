@@ -32,6 +32,7 @@ use_parentheses = true
 remove_redundant_aliases = true
 default_section = "THIRDPARTY"
 known_third_party = [
+    "alabaster",
     "bs4",
     "coincidence",
     "coverage",
@@ -49,6 +50,12 @@ known_third_party = [
     "requests",
     "ruamel_yaml",
     "sphinx_toolbox",
+    "sphinxcontrib_applehelp",
+    "sphinxcontrib_devhelp",
+    "sphinxcontrib_htmlhelp",
+    "sphinxcontrib_jsmath",
+    "sphinxcontrib_qthelp",
+    "sphinxcontrib_serializinghtml",
     "typing_extensions",
     "typing_inspect",
     "ytools3",
