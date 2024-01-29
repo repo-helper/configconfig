@@ -25,9 +25,9 @@ Homepage = "https://github.com/repo-helper/configconfig"
 Documentation = "https://configconfig.readthedocs.io/en/latest"
 
 [project.optional-dependencies]
-sphinx = [ "docutils", "sphinx>=3.0.3,<7.3.0", "sphinx-toolbox",]
+sphinx = [ "docutils", "sphinx<7.3.0,>=3.0.3", "sphinx-toolbox",]
 testing = [ "pytest",]
-all = [ "docutils", "pytest", "sphinx>=3.0.3,<7.3.0", "sphinx-toolbox",]
+all = [ "docutils", "pytest", "sphinx<7.3.0,>=3.0.3", "sphinx-toolbox",]
 
 [tool.mkrecipe]
 conda-channels = [ "conda-forge", "domdfcoding",]
