@@ -60,4 +60,4 @@ known_third_party = [
     "typing_inspect",
     "ytools3",
 ]
-known_first_party = "configconfig"
+known_first_party = [ "configconfig",]
