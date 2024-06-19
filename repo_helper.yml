@@ -33,6 +33,7 @@ extras_require:
   - sphinx<3.4.0,>=3.0.3
   - sphinx-toolbox
   - docutils
+  - standard-imghdr==3.10.14; python_version >= "3.13"
  testing:
   - pytest
 
