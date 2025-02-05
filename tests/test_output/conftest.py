@@ -27,11 +27,11 @@
 #
 
 # stdlib
-from typing import Any, Dict, NamedTuple, Sequence, Tuple
+from typing import Any, Dict, Iterator, NamedTuple, Sequence, Tuple
 
 # 3rd party
 import pytest
-from bs4 import BeautifulSoup  # type: ignore[import]
+from bs4 import BeautifulSoup
 from domdf_python_tools.paths import PathPlus
 from sphinx.application import Sphinx
 from sphinx.testing.fixtures import app as testing_app
@@ -94,7 +94,7 @@ def app_params(
 
 
 @pytest.fixture()
-def page(testing_app: Sphinx, request) -> BeautifulSoup:
+def page(testing_app: Sphinx, request) -> Iterator[BeautifulSoup]:
 	testing_app.build(force_all=True)
 
 	pagename = request.param
