@@ -43,7 +43,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, List, Type, TypeVar, Unio
 
 # 3rd party
 from typing_extensions import Literal
-from typing_inspect import is_literal_type  # type: ignore[import]
+from typing_inspect import is_literal_type  # type: ignore[import-untyped]
 
 if TYPE_CHECKING:
 	# this package
@@ -298,7 +298,7 @@ json_type_lookup = {
 		}
 
 
-def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore[misc]
+def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore[valid-type]
 	"""
 	Returns a tuple of permitted values for a :class:`typing.Literal`.
 
@@ -307,10 +307,7 @@ def get_literal_values(literal: Literal) -> typing.Tuple[Any]:  # type: ignore[m
 	:param literal:
 	"""
 
-	if sys.version_info < (3, 7):
-		return literal.__values__
-	else:
-		return literal.__args__
+	return literal.__args__
 
 
 RawConfigVarsType = Dict[str, Any]

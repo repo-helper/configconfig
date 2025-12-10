@@ -32,7 +32,7 @@ from typing import Any, Callable, Optional, Type, Union
 
 # 3rd party
 from domdf_python_tools.stringlist import StringList
-from typing_inspect import is_literal_type  # type: ignore[import]
+from typing_inspect import is_literal_type  # type: ignore[import-untyped]
 
 # this package
 from configconfig.metaclass import ConfigVarMeta

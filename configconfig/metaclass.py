@@ -70,7 +70,7 @@ class ConfigVarMeta(type):
 
 		x.required = get("required", False)
 		x.default = get("default", '')
-		x.validator = get("validator", lambda y: y)  # type: ignore[assignment]
+		x.validator = get("validator", lambda y: y)  # type: ignore[method-assign]
 		x.category = get("category", "other")
 		x.__name__ = dct.get("name", dct.get("__name__", x.__name__))
 
@@ -113,7 +113,7 @@ class ConfigVarMeta(type):
 	def schema_entry(cls) -> Dict[str, Any]:  # noqa: D102
 		return cls.get_schema_entry()
 
-	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # type: ignore[override]
+	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:
 		"""
 		Alias for :meth:`ConfigVar.get <.ConfigVar.get>`.
 
