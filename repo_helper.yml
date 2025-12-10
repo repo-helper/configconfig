@@ -58,3 +58,4 @@ extra_sphinx_extensions:
 
 exclude_files:
  - contributing
+ - doc_requirements
