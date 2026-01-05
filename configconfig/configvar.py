@@ -114,7 +114,7 @@ class ConfigVar(metaclass=ConfigVarMeta):
 	__name__: str
 
 	@classmethod
-	def validator(cls, value: Any) -> Any:
+	def validator(cls, value: Any) -> Any:  # noqa: PRM002
 		"""
 		Function to call to validate the values.
 

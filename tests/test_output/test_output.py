@@ -13,9 +13,9 @@ def test_build_example(testing_app: Sphinx):
 
 @min_version("3.7")
 @pytest.mark.parametrize(
-		"page", [
-				"autoconfig.html",
-				], indirect=True
+		"page",
+		["autoconfig.html"],
+		indirect=True,
 		)
 def test_html_output(page: BeautifulSoup, html_regression: HTMLRegressionFixture):
 	"""
@@ -27,9 +27,9 @@ def test_html_output(page: BeautifulSoup, html_regression: HTMLRegressionFixture
 
 @only_version("3.6")
 @pytest.mark.parametrize(
-		"page", [
-				"autoconfig.html",
-				], indirect=True
+		"page",
+		["autoconfig.html"],
+		indirect=True,
 		)
 def test_html_output_py36(page: BeautifulSoup, html_regression: HTMLRegressionFixture):
 	"""

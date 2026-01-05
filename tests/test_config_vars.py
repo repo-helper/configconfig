@@ -1,10 +1,12 @@
 # stdlib
-from typing import Type
+import os
+from typing import Any, Dict, List, Type, Union
 
 # 3rd party
 import pytest
 
 # this package
+from configconfig.configvar import ConfigVar
 from configconfig.testing import (
 		BoolFalseTest,
 		BoolTrueTest,
@@ -17,8 +19,63 @@ from configconfig.testing import (
 		test_list_int,
 		test_list_str
 		)
-from tests.configuration import *  # pylint: disable=wildcard-import
-from tests.configuration import subclassed
+from tests.configuration import (
+		additional_ignore,
+		additional_requirements_files,
+		additional_setup_args,
+		author,
+		conda_channels,
+		conda_description,
+		console_scripts,
+		copyright_years,
+		default_python_versions,
+		docker_name,
+		docker_shields,
+		docs_dir,
+		email,
+		enable_conda,
+		enable_docs,
+		enable_pre_commit,
+		enable_releases,
+		enable_tests,
+		exclude_files,
+		extra_sphinx_extensions,
+		extras_require,
+		html_context,
+		html_theme_options,
+		import_name,
+		intersphinx_mapping,
+		keywords,
+		manifest_additional,
+		modname,
+		pkginfo_extra,
+		platforms,
+		preserve_custom_theme,
+		py_modules,
+		pypi_name,
+		python_deploy_version,
+		python_versions,
+		repo_name,
+		rtfd_author,
+		setup_pre,
+		short_desc,
+		source_dir,
+		sphinx_conf_epilogue,
+		sphinx_conf_preamble,
+		sphinx_html_theme,
+		subclassed,
+		tests_dir,
+		tox_build_requirements,
+		tox_requirements,
+		tox_testenv_extras,
+		travis_additional_requirements,
+		travis_extra_install_post,
+		travis_extra_install_pre,
+		travis_pypi_secure,
+		travis_site,
+		travis_ubuntu_version,
+		username
+		)
 
 
 class Test_author(RequiredStringTest):
@@ -61,11 +118,15 @@ class Test_rtfd_author:
 	@pytest.mark.parametrize(
 			"value, expects",
 			[
-					({"rtfd_author": "Dominic Davis-Foster and Joe Bloggs"
-						}, "Dominic Davis-Foster and Joe Bloggs"),
+					(
+							{"rtfd_author": "Dominic Davis-Foster and Joe Bloggs"},
+							"Dominic Davis-Foster and Joe Bloggs",
+							),
 					({"author": "Dom"}, "Dom"),
-					({"author": "Dom", "rtfd_author": "Dominic Davis-Foster and Joe Bloggs"},
-						"Dominic Davis-Foster and Joe Bloggs"),
+					(
+							{"author": "Dom", "rtfd_author": "Dominic Davis-Foster and Joe Bloggs"},
+							"Dominic Davis-Foster and Joe Bloggs",
+							),
 					]
 			)
 	def test_success(self, value: Dict[str, str], expects: str):
@@ -127,11 +188,13 @@ class Test_conda_description:
 							{"short_desc": "This is a short description of my project."},
 							"This is a short description of my project.",
 							),
-					({
-							"short_desc": "A short description",
-							"conda_description": "This is a short description of my project.",
-							},
-						"This is a short description of my project."),
+					(
+							{
+									"short_desc": "A short description",
+									"conda_description": "This is a short description of my project.",
+									},
+							"This is a short description of my project.",
+							),
 					]
 			)
 	def test_success(self, value: Dict[str, str], expects: str):
@@ -168,10 +231,14 @@ def test_copyright_years():
 @pytest.mark.parametrize(
 		"wrong_value, match",
 		[
-				({"copyright_years": test_list_int},
-					r"'copyright_years' must be one of \(<class 'str'>, <class 'int'>\), not <class 'list'>"),
-				({"copyright_years": test_list_str},
-					r"'copyright_years' must be one of \(<class 'str'>, <class 'int'>\), not <class 'list'>"),
+				(
+						{"copyright_years": test_list_int},
+						r"'copyright_years' must be one of \(<class 'str'>, <class 'int'>\), not <class 'list'>",
+						),
+				(
+						{"copyright_years": test_list_str},
+						r"'copyright_years' must be one of \(<class 'str'>, <class 'int'>\), not <class 'list'>",
+						),
 				({"username": "domdfcoding"}, "A value for 'copyright_years' is required."),
 				({}, "A value for 'copyright_years' is required."),
 				]
@@ -526,11 +593,11 @@ class Test_python_versions(ListTest):
 
 class Test_additional_setup_args(DictTest):
 	config_var = additional_setup_args
-	test_value = dict(key="value")
+	test_value = {"key": "value"}
 
 	def test_success(self):
 		assert self.config_var.get({self.config_var.__name__: self.test_value}) == {"key": "value"}
-		assert self.config_var.get({self.config_var.__name__: dict(key="'value'")}) == {"key": "'value'"}
+		assert self.config_var.get({self.config_var.__name__: {"key": "'value'"}}) == {"key": "'value'"}
 		assert self.config_var.get({self.config_var.__name__: {}}) == {}
 		assert self.config_var.get({"username": "domdfcoding"}) == {}
 		assert self.config_var.get() == {}
@@ -539,17 +606,17 @@ class Test_additional_setup_args(DictTest):
 
 class Test_extras_require(DictTest):
 	config_var = extras_require
-	test_value = dict(key2="value2")
+	test_value = {"key2": "value2"}
 
 
 class Test_html_theme_options(DictTest):
 	config_var = html_theme_options
-	test_value = dict(key3="value3")
+	test_value = {"key3": "value3"}
 
 
 class Test_html_context(DictTest):
 	config_var = html_context
-	test_value = dict(key4="value4")
+	test_value = {"key4": "value4"}
 
 
 def test_subclassing():

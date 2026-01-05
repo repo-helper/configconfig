@@ -125,10 +125,12 @@ class DemoParser(Parser):
 		tox_py_versions = get_tox_python_versions(parsed_config_vars["python_versions"])
 		parsed_config_vars["tox_py_versions"] = tox_py_versions
 		tox_travis_versions = get_tox_travis_python_versions(
-				parsed_config_vars["python_versions"], tox_py_versions
+				parsed_config_vars["python_versions"],
+				tox_py_versions,
 				)
 		gh_actions_versions = get_gh_actions_python_versions(
-				parsed_config_vars["python_versions"], tox_py_versions
+				parsed_config_vars["python_versions"],
+				tox_py_versions,
 				)
 
 		# Travis

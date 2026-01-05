@@ -52,6 +52,8 @@ class Validator:
 	"""
 	Methods are named ``visit_<type>``.
 
+	:param config_var:
+
 	.. autosummary-widths:: 4/10
 	"""
 
@@ -143,10 +145,8 @@ class Validator:
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 
 		if not isinstance(obj, (int, bool, str)):
-			raise ValueError(
-					f"'{self.config_var.__name__}' must be one of {(int, bool, str)}, "
-					f"not {type(obj)}"
-					) from None
+			msg = f"'{self.config_var.__name__}' must be one of {(int, bool, str)}, not {type(obj)}"
+			raise ValueError(msg) from None
 
 		return self.config_var.rtype(strtobool(obj))
 
@@ -162,33 +162,27 @@ class Validator:
 
 		data = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 		if isinstance(data, str) or not isinstance(data, Iterable):
-			raise ValueError(
-					f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
-					) from None
+			msg = f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
+			raise ValueError(msg) from None
 
 		if get_origin(self.config_var.dtype.__args__[0]) is Union:
 			for obj in data:
 				if not check_union(obj, self.config_var.dtype.__args__[0]):
-					raise ValueError(
-							f"'{self.config_var.__name__}' must be a "
-							f"List of {self.config_var.dtype.__args__[0]}"
-							) from None
+					msg = f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
+					raise ValueError(msg) from None
 
 		elif is_literal_type(self.config_var.dtype.__args__[0]):
 			for obj in data:
 				# if isinstance(obj, str):
 				# 	obj = obj.lower()
 				if obj not in get_literal_values(self.config_var.dtype.__args__[0]):
-					raise ValueError(
-							f"Elements of '{self.config_var.__name__}' must be "
-							f"one of {get_literal_values(self.config_var.dtype.__args__[0])}"
-							) from None
+					msg = f"Elements of '{self.config_var.__name__}' must be one of {get_literal_values(self.config_var.dtype.__args__[0])}"
+					raise ValueError(msg) from None
 		else:
 			for obj in data:
 				if not check_union(obj, self.config_var.dtype):
-					raise ValueError(
-							f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
-							) from None
+					msg = f"'{self.config_var.__name__}' must be a List of {self.config_var.dtype.__args__[0]}"
+					raise ValueError(msg) from None
 
 		try:
 			for obj in data:
@@ -200,9 +194,8 @@ class Validator:
 			return buf
 
 		except ValueError:
-			raise ValueError(
-					f"Values in '{self.config_var.__name__}' must be {self.config_var.rtype.__args__[0]}"
-					) from None
+			msg = f"Values in '{self.config_var.__name__}' must be {self.config_var.rtype.__args__[0]}"
+			raise ValueError(msg) from None
 
 	def visit_dict(self, raw_config_vars: RawConfigVarsType) -> Dict:
 		"""
@@ -247,18 +240,14 @@ class Validator:
 
 		obj = optional_getter(raw_config_vars, self.config_var, self.config_var.required)
 		if not check_union(obj, self.config_var.dtype):
-			raise ValueError(
-					f"'{self.config_var.__name__}' must be one of {self.config_var.dtype.__args__}, "
-					f"not {type(obj)}"
-					) from None
+			msg = f"'{self.config_var.__name__}' must be one of {self.config_var.dtype.__args__}, not {type(obj)}"
+			raise ValueError(msg) from None
 
 		try:
 			return self.config_var.rtype(obj)
 		except ValueError:
-			raise ValueError(
-					f"'{self.config_var.__name__}' must be {self.config_var.rtype.__args__}, "
-					f"not {type(obj)}"
-					) from None
+			msg = f"'{self.config_var.__name__}' must be {self.config_var.rtype.__args__}, not {type(obj)}"
+			raise ValueError(msg) from None
 
 	def visit_literal(self, raw_config_vars: RawConfigVarsType) -> Any:
 		"""
@@ -271,9 +260,8 @@ class Validator:
 		# if isinstance(obj, str):
 		# 	obj = obj.lower()
 		if obj not in get_literal_values(self.config_var.dtype):
-			raise ValueError(
-					f"'{self.config_var.__name__}' must be one of {get_literal_values(self.config_var.dtype)}"
-					) from None
+			msg = f"'{self.config_var.__name__}' must be one of {get_literal_values(self.config_var.dtype)}"
+			raise ValueError(msg) from None
 
 		return obj
 

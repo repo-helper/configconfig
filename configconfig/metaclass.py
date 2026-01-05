@@ -76,7 +76,7 @@ class ConfigVarMeta(type):
 
 		return x
 
-	def get_schema_entry(cls, schema: Optional[Dict] = None) -> Dict[str, Any]:
+	def get_schema_entry(cls, schema: Optional[Dict] = None) -> Dict[str, Any]:  # noqa: PRM002
 		"""
 		Returns the JSON schema entry for this configuration value.
 
@@ -113,7 +113,7 @@ class ConfigVarMeta(type):
 	def schema_entry(cls) -> Dict[str, Any]:  # noqa: D102
 		return cls.get_schema_entry()
 
-	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:
+	def __call__(cls, raw_config_vars: Dict[str, Any]) -> Any:  # noqa: PRM002
 		"""
 		Alias for :meth:`ConfigVar.get <.ConfigVar.get>`.
 

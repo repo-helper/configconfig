@@ -78,6 +78,8 @@ class Parser:
 	This takes the mapping of raw configuration variables,
 	the mapping of parsed variables (those set with the ``visit_<configuration value name>`` method),
 	and the configuration file name. The method must return the ``parsed_config_vars``.
+
+	:param allow_unknown_keys:
 	"""
 
 	config_vars: List[ConfigVarMeta]

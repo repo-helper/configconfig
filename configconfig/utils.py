@@ -62,7 +62,7 @@ else:  # pragma: no cover (>=py38)
 	# 3rd party
 	from typing_inspect import get_origin
 
-	def get_args(tp):  # noqa: MAN001,MAN002
+	def get_args(tp):  # noqa: MAN001,MAN002,PRM002
 		"""Get type arguments with all substitutions performed.
 
 		For unions, basic simplifications used by Union constructor are performed.
@@ -187,7 +187,7 @@ def get_yaml_type(type_: Type) -> str:
 			return f"Mapping of {dtype}"
 
 	elif is_literal_type(type_):
-		types = [y for y in get_literal_values(type_)]
+		types = list(get_literal_values(type_))
 		return " or ".join(repr(x) for x in types)
 
 	elif isinstance(type_, EnumMeta):
@@ -204,10 +204,10 @@ basic_schema = MappingProxyType({
 
 
 def make_schema(*configuration_variables: "ConfigVarMeta") -> Dict[str, Any]:
-	"""
+	r"""
 	Create a ``JSON`` schema from a list of :class:`~configconfig.configvar.ConfigVar` classes.
 
-	:param configuration_variables:
+	:param \*configuration_variables:
 
 	:return: Dictionary representation of the ``JSON`` schema.
 	"""
@@ -276,7 +276,7 @@ def get_json_type(type_: Type) -> Dict[str, Union[str, List, Dict]]:
 		return {"type": "object"}
 
 	elif check_type(type_, Literal) or is_literal_type(type_):  # type: ignore[arg-type]
-		return {"enum": [x for x in get_literal_values(type_)]}
+		return {"enum": list(get_literal_values(type_))}
 
 	elif isinstance(type_, EnumMeta):
 		return {"enum": [x._value_ for x in type_]}
