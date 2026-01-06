@@ -27,35 +27,6 @@ lines_between_types = 0
 use_parentheses = true
 remove_redundant_aliases = true
 default_section = "THIRDPARTY"
-known_third_party = [
-    "alabaster",
-    "bs4",
-    "coincidence",
-    "coverage",
-    "coverage_pyver_pragma",
-    "domdf_python_tools",
-    "github",
-    "importlib_metadata",
-    "jsonschema",
-    "pytest",
-    "pytest_cov",
-    "pytest_randomly",
-    "pytest_regressions",
-    "pytest_timeout",
-    "pyyaml",
-    "requests",
-    "ruamel_yaml",
-    "sphinx_toolbox",
-    "sphinxcontrib_applehelp",
-    "sphinxcontrib_devhelp",
-    "sphinxcontrib_htmlhelp",
-    "sphinxcontrib_jsmath",
-    "sphinxcontrib_qthelp",
-    "sphinxcontrib_serializinghtml",
-    "typing_extensions",
-    "typing_inspect",
-    "ytools3",
-]
 known_first_party = [ "configconfig",]
 
 [config]
