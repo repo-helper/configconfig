@@ -113,7 +113,7 @@ configconfig
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/configconfig
-	:target: https://pypi.org/project/configconfig/
+	:target: https://pypistats.org/packages/configconfig
 	:alt: PyPI - Downloads
 
 .. end shields
