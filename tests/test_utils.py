@@ -44,7 +44,7 @@ class MyEnum(str, Enum):
 				(Union[str, float], {"type": ["string", "number"]}),
 				(Literal["dog", "cat"], {"enum": ["dog", "cat"]}),
 				(MyEnum, {"enum": ["dog", "cat"]}),
-				]
+				],
 		)
 def test_get_json_type(value: Type, expects: Dict[str, Any]):
 	assert get_json_type(value) == expects
@@ -67,7 +67,7 @@ def test_get_json_type(value: Type, expects: Dict[str, Any]):
 				(Union[str, float], "String or Float"),
 				(Literal["dog", "cat"], "'dog' or 'cat'"),
 				(MyEnum, "'dog' or 'cat'"),
-				]
+				],
 		)
 def test_get_yaml_type(value: Type, expects: str):
 	assert get_yaml_type(value) == expects

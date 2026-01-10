@@ -64,7 +64,7 @@ from tests.configuration import (
 				rtfd_author,
 				preserve_custom_theme,
 				sphinx_html_theme,
-				]
+				],
 		)
 def test_get_schema_entry(configvar: ConfigVarMeta, data_regression: DataRegressionFixture):
 	data_regression.check(configvar.schema_entry)
@@ -118,5 +118,5 @@ def test_make_schema(data_regression: DataRegressionFixture):
 					tox_requirements,
 					tox_build_requirements,
 					tox_testenv_extras,
-					)
+					),
 			)
