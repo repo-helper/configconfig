@@ -267,7 +267,7 @@ class import_name(ConfigVar):  # noqa
 				raise ValueError(
 						"""\
 	'import_name' must only contain contains letters, numbers, underscores and fullstops.
-	It cannot cannot start with a number, or contain any spaces."""
+	It cannot cannot start with a number, or contain any spaces.""",
 						)
 		return name
 

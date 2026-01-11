@@ -127,7 +127,7 @@ class Test_rtfd_author:
 							{"author": "Dom", "rtfd_author": "Dominic Davis-Foster and Joe Bloggs"},
 							"Dominic Davis-Foster and Joe Bloggs",
 							),
-					]
+					],
 			)
 	def test_success(self, value: Dict[str, str], expects: str):
 		assert rtfd_author.get(value) == expects
@@ -145,7 +145,7 @@ class Test_rtfd_author:
 					({"rtfd_author": test_list_str}, "'rtfd_author' must be a <class 'str'>"),
 					({"modname": "repo_helper"}, "A value for 'author' is required."),
 					({}, "A value for 'author' is required."),
-					]
+					],
 			)
 	def test_errors(self, wrong_value: Dict[str, Any], match: str):
 		with pytest.raises(ValueError, match=match):
@@ -168,7 +168,7 @@ def test_modname():
 				({"modname": test_list_str}, "'modname' must be a <class 'str'>"),
 				({"username": "domdfcoding"}, "A value for 'modname' is required."),
 				({}, "A value for 'modname' is required."),
-				]
+				],
 		)
 def test_modname_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
@@ -195,7 +195,7 @@ class Test_conda_description:
 									},
 							"This is a short description of my project.",
 							),
-					]
+					],
 			)
 	def test_success(self, value: Dict[str, str], expects: str):
 		assert conda_description.get(value) == expects
@@ -213,7 +213,7 @@ class Test_conda_description:
 					({"conda_description": test_list_str}, "'conda_description' must be a <class 'str'>"),
 					({"modname": "repo_helper"}, "A value for 'short_desc' is required."),
 					({}, "A value for 'short_desc' is required."),
-					]
+					],
 			)
 	def test_errors(self, wrong_value: Dict[str, Any], match: str):
 		with pytest.raises(ValueError, match=match):
@@ -241,7 +241,7 @@ def test_copyright_years():
 						),
 				({"username": "domdfcoding"}, "A value for 'copyright_years' is required."),
 				({}, "A value for 'copyright_years' is required."),
-				]
+				],
 		)
 def test_copyright_years_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
@@ -267,7 +267,7 @@ def test_repo_name():
 				({"repo_name": test_list_str}, "'repo_name' must be a <class 'str'>"),
 				({"username": "domdfcoding"}, "A value for 'modname' is required."),
 				({}, "A value for 'modname' is required."),
-				]
+				],
 		)
 def test_repo_name_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
@@ -292,7 +292,7 @@ def test_pypi_name():
 				({"pypi_name": test_list_int}, "'pypi_name' must be a <class 'str'>"),
 				({"pypi_name": test_list_str}, "'pypi_name' must be a <class 'str'>"),
 				({}, "A value for 'modname' is required."),
-				]
+				],
 		)
 def test_pypi_name_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
@@ -319,7 +319,7 @@ def test_import_name():
 				({"import_name": test_list_int}, "'import_name' must be a <class 'str'>"),
 				({"import_name": test_list_str}, "'import_name' must be a <class 'str'>"),
 				({}, "A value for 'modname' is required."),
-				]
+				],
 		)
 def test_import_name_errors(wrong_value: Dict[str, Any], match: str):
 	with pytest.raises(ValueError, match=match):
@@ -439,7 +439,7 @@ class Test_sphinx_conf_preamble(ListTest):
 			"import datetime",
 			"now = datetime.datetime.now()",
 			"strftime = now.strftime('%H:%M')",
-			"print(f'Starting building docs at {strftime}.')"
+			"print(f'Starting building docs at {strftime}.')",
 			]
 
 
@@ -448,7 +448,7 @@ class Test_sphinx_conf_epilogue(ListTest):
 	test_value = [
 			"time_taken = datetime.datetime.now() - now",
 			"strftime = time_taken.strftime('%H:%M')",
-			"print(f'Finished building docs at {strftime}.')"
+			"print(f'Finished building docs at {strftime}.')",
 			]
 
 
@@ -554,7 +554,7 @@ class Test_platforms:
 							{config_var.__name__: test_list_int},
 							r"Elements of 'platforms' must be one of \('Windows', 'macOS', 'Linux'\)",
 							),
-					]
+					],
 			)
 	def test_errors(self, wrong_value: Dict[str, Any], match: str):
 		with pytest.raises(ValueError, match=match):
