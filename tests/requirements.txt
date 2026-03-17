@@ -11,6 +11,7 @@ pytest-cov>=2.8.1
 pytest-randomly>=3.7.0
 pytest-regressions>=2.0.2
 pytest-timeout>=1.4.2
+setuptools<81
 sphinxcontrib-applehelp<=1.0.4
 sphinxcontrib-devhelp<=1.0.2
 sphinxcontrib-htmlhelp<=2.0.1
