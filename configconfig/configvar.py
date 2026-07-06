@@ -79,7 +79,6 @@ class ConfigVar(metaclass=ConfigVarMeta):
 			category: str = "packaging"
 
 	.. latex:vspace:: -10px
-
 	"""  # noqa: D300,D301
 
 	dtype: Type
